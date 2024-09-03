@@ -1,5 +1,6 @@
-require("myconfig.set")
-require("myconfig.remap")
+require("config.set")
+require("config.remap")
+require("config.lazy")
 
 local augroup = vim.api.nvim_create_augroup
 local autocmd = vim.api.nvim_create_autocmd
@@ -16,7 +17,7 @@ autocmd('TextYankPost', {
     callback = function()
         vim.highlight.on_yank({
             higroup = 'IncSearch',
-            timeout = 40,
+            timeout = 400,
         })
     end,
 })
