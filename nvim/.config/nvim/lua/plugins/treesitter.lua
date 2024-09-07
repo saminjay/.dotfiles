@@ -18,6 +18,8 @@ return {
                 "typescript",
                 "html",
                 "css",
+                "sql",
+                "bash",
             },
             auto_install = true,
             sync_install = false,
