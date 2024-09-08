@@ -49,4 +49,7 @@ vim.keymap.set("n", "<leader><leader>", function()
     vim.cmd("so")
 end)
 
--- TODO: add Treesitter playground remap {cmd - :InspectTree
+-- Treesitter playground
+vim.keymap.set("n", "<leader>TS", function ()
+    vim.treesitter.inspect_tree({ command = "40vnew" })
+end) 
