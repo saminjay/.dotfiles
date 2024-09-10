@@ -63,7 +63,7 @@ return {
                 html = {},
                 clangd = {},
                 bashls = {},
-
+                marksman = {},
             }
 
             local ensure_installed = vim.tbl_keys(servers)

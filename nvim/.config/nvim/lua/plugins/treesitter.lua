@@ -20,6 +20,8 @@ return {
                 "css",
                 "sql",
                 "bash",
+                "markdown",
+                "markdown_inline",
             },
             auto_install = true,
             sync_install = false,
