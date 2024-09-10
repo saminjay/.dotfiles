@@ -16,9 +16,6 @@ unfocused_hollow = true
 # blink_interval = 500
 # blink_timeout = 5
 
-# [env]
-# TERM = "screen-256color"
-
 [font.normal]
 family = "FiraMono Nerd Font"
 style = "Regular"
