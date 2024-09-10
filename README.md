@@ -1,7 +1,7 @@
 [XDG Base Directories](https://wiki.archlinux.org/title/XDG_Base_Directory)
 
 # [Alacritty](https://github.com/alacritty/alacritty)
-Alacritty a GPU accelerated Terminal Emulator
+A GPU accelerated Terminal Emulator
 ```bash
 sudo pacman -S alacritty
 mkdir ~/.config/alacritty/
