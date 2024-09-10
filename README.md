@@ -21,5 +21,5 @@
 - wget
 - ripgrep
 
-## Stow everything
+# Stow everything
 `ls -d */ | stow`
