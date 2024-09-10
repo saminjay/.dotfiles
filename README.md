@@ -1,4 +1,4 @@
-# TMU 
+# TMUX
 `git clone https://github.com/tmux-plugins/tpm ${XDG_DATA_SHARE}/tmux/plugins/tpm`
 
 # ZSH
