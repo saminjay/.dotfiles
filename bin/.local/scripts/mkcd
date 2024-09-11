@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# TODO: accept arguements, add help and decline more than 1 directory
+mkdir $1
+cd $1
