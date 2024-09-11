@@ -9,8 +9,10 @@ return {
                 { path = 'luvit-meta/library', words = { 'vim%.uv' } },
             },
         },
+        dependencies = {
+            { 'Bilal2453/luvit-meta' },
+        },
     },
-    { 'Bilal2453/luvit-meta', lazy = true },
     {
         -- Main LSP Configuration
         'neovim/nvim-lspconfig',
@@ -36,13 +38,15 @@ return {
                     vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
                     vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
                     vim.keymap.set("n", "<leader>vws", vim.lsp.buf.workspace_symbol, opts)
-                    vim.keymap.set("n", "<leader>vd", vim.diagnostic.open_float, opts)
                     vim.keymap.set("n", "<leader>vca", vim.lsp.buf.code_action, opts)
                     vim.keymap.set("n", "<leader>vrr", vim.lsp.buf.references, opts)
                     vim.keymap.set("n", "<leader>brn", vim.lsp.buf.rename, opts)
+
+                    vim.keymap.set("n", "<leader>vd", vim.diagnostic.open_float, opts)
+                    vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
+                    vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
+
                     vim.keymap.set("i", "<C-h>", vim.lsp.buf.signature_help, opts)
-                    vim.keymap.set("n", "[d", vim.diagnostic.goto_next, opts)
-                    vim.keymap.set("n", "]d", vim.diagnostic.goto_prev, opts)
                 end,
             })
 
@@ -84,16 +88,16 @@ return {
 
             -- INFO: Diagnostics
             vim.diagnostic.config({
-            -- update_in_insert = true,
-            float = {
-                focusable = false,
-                style = "minimal",
-                border = "rounded",
-                source = true,
-                header = "",
-                prefix = "",
-            },
-        })
+                -- update_in_insert = true,
+                float = {
+                    focusable = false,
+                    style = "minimal",
+                    border = "rounded",
+                    source = true,
+                    header = "",
+                    prefix = "",
+                },
+            })
 
         end,
     },
