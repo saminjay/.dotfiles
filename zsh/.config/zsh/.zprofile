@@ -5,9 +5,6 @@ alias c=clear
 # alias vim=nvim
 alias grep="grep --color=always"
 
-# source mkcd to actually change the directory
-alias mkcd=". mkcd"
-
 # frequent dirs
 alias personal="cd ~/.personal"
 alias private="cd ~/.private"
@@ -23,3 +20,9 @@ alias .3="cd ../../.."
 alias .4="cd ../../../.."
 alias .5="cd ../../../../.."
 alias .6="cd ../../../../../.."
+
+# mkcd function
+function mkcd() {
+    mkdir -p $1
+    cd $1
+}
