@@ -3,14 +3,8 @@
 # Wallpaper directory
 wallpapers_dir="${HOME}/Pictures/Wallpapers"
 
-# store current directory
-curr_dir=$(pwd)
-
 cd ${wallpapers_dir}
 opts=$(ls -d */)
-
-# get to the directory you started with
-cd ${curr_dir}
 
 # validate param
 fl=0
