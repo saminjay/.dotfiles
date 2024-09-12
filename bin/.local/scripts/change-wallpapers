@@ -23,7 +23,9 @@ do
 done
 
 if [ $fl -eq 0 ]; then
-    echo "Wrong parameter passed"
+    echo "$1 not found"
+    echo "Available params:"
+    echo $opts
     exit 1
 fi
 
