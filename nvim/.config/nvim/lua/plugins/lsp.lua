@@ -40,7 +40,7 @@ return {
                     vim.keymap.set("n", "<leader>vws", vim.lsp.buf.workspace_symbol, opts)
                     vim.keymap.set("n", "<leader>vca", vim.lsp.buf.code_action, opts)
                     vim.keymap.set("n", "<leader>vrr", vim.lsp.buf.references, opts)
-                    vim.keymap.set("n", "<leader>brn", vim.lsp.buf.rename, opts)
+                    vim.keymap.set("n", "<leader>vrn", vim.lsp.buf.rename, opts)
 
                     vim.keymap.set("n", "<leader>vd", vim.diagnostic.open_float, opts)
                     vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
@@ -99,6 +99,28 @@ return {
                 },
             })
 
+            -- Borders
+            local _border = "rounded"
+
+            vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
+                vim.lsp.handlers.hover, {
+                    border = _border
+                }
+            )
+
+            vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
+                vim.lsp.handlers.signature_help, {
+                    border = _border
+                }
+            )
+
+            vim.diagnostic.config {
+                float = { border = _border }
+            }
+
+            require('lspconfig.ui.windows').default_options = {
+                border = _border
+            }
         end,
     },
 }
