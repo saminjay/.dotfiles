@@ -45,11 +45,6 @@ vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>")
 
 vim.keymap.set("n", "<leader>vpp", "<cmd>e ~/.config/nvim/lua/config/lazy.lua<CR>");
 
--- source the current config
-vim.keymap.set("n", "<leader><leader>", function()
-    vim.cmd("so")
-end)
-
 -- Treesitter playground
 vim.keymap.set("n", "<leader>TS", function ()
     vim.treesitter.inspect_tree({ command = "40vnew" })
