@@ -1,21 +1,20 @@
--- tokyonight CONFIG
-local tokyo_night = {
-    "folke/tokyonight.nvim",
-    lazy = false,
-    priority = 1000,
-    config = function()
-        -- load the colorscheme here
-        vim.cmd.colorscheme("tokyonight-night")
-    end,
-}
-
--- rose-pine CONFIG
-local rose_pine = { 
+--  rose-pine CONFIG
+local rose_pine = {
     "rose-pine/neovim",
     name = "rose-pine",
     lazy = false,       -- load on startup
     priority = 1000,    -- high priority, load before everything else
     config = function()
+        require("rose-pine").setup({
+            enable = {
+                terminal = true,
+            },
+            styles = {
+                bold = true,
+                italic = true,
+                transparency = true,
+            },
+        })
         -- load the colorscheme here
         vim.cmd.colorscheme("rose-pine")
     end,
@@ -95,6 +94,7 @@ local lualine_config = {
 
 local lualine = {
     'nvim-lualine/lualine.nvim',
+    event = "ColorScheme",
     dependencies = { 'nvim-tree/nvim-web-devicons' },
     opts = lualine_config,
 }

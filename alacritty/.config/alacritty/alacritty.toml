@@ -54,7 +54,7 @@ decorations = "full"
 dynamic_title = true
 option_as_alt = "Both"
 startup_mode = "Maximized"
-# opacity = 0.8
+opacity = 0.85
 
 [window.dimensions]
 columns = 160
