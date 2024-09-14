@@ -48,4 +48,4 @@ vim.keymap.set("n", "<leader>vpp", "<cmd>e ~/.config/nvim/lua/config/lazy.lua<CR
 -- Treesitter playground
 vim.keymap.set("n", "<leader>TS", function ()
     vim.treesitter.inspect_tree({ command = "40vnew" })
-end) 
+end)
