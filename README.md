@@ -57,7 +57,12 @@ Installed through mason or from AUR repos
 - wget
 - ripgrep
 - luarock
+- fzf
 ```bash
-sudo pacman -S stow wget ripgrep luarock
+sudo pacman -S stow wget ripgrep luarock fzf
 ```
 
+## Acknowledgements
+- ThePrimeagen [config](https://github.com/ThePrimeagen/init.lua) [video](https://youtu.be/w7i4amO_zaE?si=d2d7WdR7mMQLEBfN)
+- Dreams of Code [config](https://github.com/dreamsofcode-io/dotfiles) [video](https://youtu.be/DzNmUNvnB04?si=dmjmJUhEmUyrRM2g)
+- NVIM kickstart [config](https://github.com/nvim-lua/kickstart.nvim)
