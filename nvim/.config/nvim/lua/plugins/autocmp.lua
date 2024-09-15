@@ -16,13 +16,16 @@ return {
             local cmp = require("cmp")
             local cmp_select = { behavior = cmp.SelectBehavior.Select }
             cmp.setup({
+                window = {
+                    documentation = cmp.config.window.bordered(),
+                    completion = cmp.config.window.bordered(),
+                },
                 snippet = {
                     expand = function(args)
                         require("luasnip").lsp_expand(args.body) -- For `luasnip` users.
                     end,
                 },
-                -- TODO: what is this
-                -- completion = { completeopt = "menu,menuone,noinsert" },
+                completion = { completeopt = "menu,menuone,noinsert" },
                 mapping = {
                     ["<C-p>"] = cmp.mapping.select_prev_item(cmp_select),
                     ["<C-n>"] = cmp.mapping.select_next_item(cmp_select),

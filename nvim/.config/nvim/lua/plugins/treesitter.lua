@@ -1,10 +1,11 @@
 return {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
+    event = "BufRead",
     config = function ()
-        local configs = require("nvim-treesitter.configs")
-
-        configs.setup({
+        require("nvim-treesitter.configs").setup({
+            modules = {},
+            ignore_install = {},
             ensure_installed = {
                 "c",
                 "cpp",
