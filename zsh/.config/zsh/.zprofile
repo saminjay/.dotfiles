@@ -2,14 +2,15 @@
 alias ls="ls -F --color"
 alias lsa="ls -Fa"
 alias c=clear
-# alias vim=nvim
+alias vim=nvim
 alias grep="grep --color=always"
 
 # frequent dirs
 alias personal="cd ~/.personal"
 alias private="cd ~/.private"
 alias work="cd ~/.work"
-alias config="cd ~/.dotfiles"
+alias config="cd ~/.config"
+alias dotfiles="cd ~/.dotfiles"
 alias projects="cd ~/Projects"
 alias scripts="cd ~/.local/scripts"
 
