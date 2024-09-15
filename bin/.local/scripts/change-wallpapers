@@ -3,44 +3,45 @@
 # Wallpaper directory
 wallpapers_dir="${HOME}/Pictures/Wallpapers"
 
-cd ${wallpapers_dir}
-opts=$(ls -d */)
+function validate_input() {
+    cd ${wallpapers_dir}
+    local opts=$(ls -1 -d */)
 
-# validate param
-fl=0
-for i in $opts
-do
-    IFS="/" read -ra i <<< $i
-    if [ "$1" = "$i" ]; then
-        fl=1
+    local fl=0
+    for i in $opts
+    do
+        IFS="/" read -ra i <<< $i
+        if [ "$1" = "$i" ]; then
+            fl=1
+        fi
+    done
+
+    if [ $fl -eq 0 ]; then
+        echo "$1 not found"
+        echo "Available params:"
+        echo $opts
+        exit 1
     fi
-done
-
-if [ $fl -eq 0 ]; then
-    echo "$1 not found"
-    echo "Available params:"
-    echo $opts
-    exit 1
-fi
-
-# getting all the wallpapers
-opts=$(ls "${wallpapers_dir}/$1")
-wallpapers=()
-for i in $opts
-do
-    wallpapers+=($i)
-done
-
-# path to file
-ptf="$wallpapers_dir/$1"
+}
 
 function change_wallpaper() {
+    # getting all the wallpapers
+    local opts=$(ls "$2/$1")
+    local wallpapers=()
+    for i in $opts
+    do
+        wallpapers+=($i)
+    done
+
+    # path to file
+    local ptf="$wallpapers_dir/$1"
+
     local len=${#wallpapers[@]}
 
     while true
     do
         # randomly choose a wallpaper
-        idx=$((RANDOM % len))
+        local idx=$((RANDOM % len))
 
         # actually setting the wallpaper
         eval gsettings set org.gnome.desktop.background picture-uri-dark "$ptf/${wallpapers[idx]}"
@@ -48,5 +49,5 @@ function change_wallpaper() {
     done
 }
 
-# not running it in background for now
-change_wallpaper
+validate_input $1
+change_wallpaper $1 $wallpapers_dir & disown
