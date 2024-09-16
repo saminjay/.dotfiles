@@ -3,6 +3,13 @@
 # Wallpaper directory
 wallpapers_dir="${HOME}/Pictures/Wallpapers"
 
+function kill_prev() {
+    # pgrep returns pid
+    # BASH_SOURCE returns current script name
+    # $$ contains current pid (grep ignore so it doesn't suicide)
+    kill $(pgrep -f ${BASH_SOURCE[0]} | grep -v $$) >/dev/null 2>&1
+}
+
 function validate_input() {
     cd ${wallpapers_dir}
     local opts=$(ls -1 -d */)
@@ -49,5 +56,6 @@ function change_wallpaper() {
     done
 }
 
+kill_prev
 validate_input $1
 change_wallpaper $1 $wallpapers_dir & disown
