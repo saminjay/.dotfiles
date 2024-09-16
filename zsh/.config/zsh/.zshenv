@@ -20,4 +20,3 @@ export HISTFILE=$XDG_CACHE_HOME/zsh/.zhistory
 export HISTSIZE=5000
 export SAVEHIST=5000
 
-# export TMUX_PLUGIN_MANAGER_PATH=${XDG_CONFIG_HOME}/tmux/plugins
