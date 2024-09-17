@@ -19,7 +19,19 @@ return {
         event = "BufRead",
         dependencies = {
             -- Automatically install LSPs and related tools to stdpath for Neovim
-            { 'williamboman/mason.nvim', config = true }, -- NOTE: load before dependants
+            {
+                'williamboman/mason.nvim',
+                opts = {
+                    ui = {
+                        border = "rounded",
+                        icons = {
+                            package_installed = "✓",
+                            package_pending = "➜",
+                            package_uninstalled = "✗"
+                        },
+                    },
+                },
+            },
             'williamboman/mason-lspconfig.nvim',
             'WhoIsSethDaniel/mason-tool-installer.nvim',
 
@@ -69,6 +81,7 @@ return {
                 clangd = {},
                 bashls = {},
                 marksman = {},
+                jsonls = {},
             }
 
             local ensure_installed = vim.tbl_keys(servers)
