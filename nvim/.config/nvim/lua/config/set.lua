@@ -2,12 +2,15 @@
 vim.g.loaded_perl_provider = 0
 vim.g.loaded_ruby_provider = 0
 
+vim.g.netrw_bufsettings="noma nomod nu nobl nowrap ro rnu"
 vim.g.netrw_browse_split = 0
 vim.g.netrw_banner = 0
 vim.g.netrw_winsize = 15
 
 vim.opt.nu = true
 vim.opt.rnu = true
+vim.opt.cul = true
+vim.opt.culopt = "number"
 
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
@@ -24,7 +27,7 @@ vim.opt.backup = false
 vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 vim.opt.undofile = true
 
--- vim.opt.hlsearch = false
+vim.opt.hlsearch = false
 vim.opt.incsearch = true
 
 vim.opt.termguicolors = true

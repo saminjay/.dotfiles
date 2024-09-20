@@ -12,37 +12,30 @@ function kill_prev() {
 
 function validate_input() {
     cd ${wallpapers_dir}
-    local opts=$(ls -1 -d */)
+    local IFS=$'/\n'
+    local opts=($(ls -1 -d */))
 
     local fl=0
-    for i in $opts
+    for i in ${opts[@]}
     do
-        IFS="/" read -ra i <<< $i
         if [ "$1" = "$i" ]; then
             fl=1
         fi
     done
 
     if [ $fl -eq 0 ]; then
-        echo "$1 not found"
-        echo "Available params:"
-        echo $opts
+        echo -e "$1 not found\n"
+        echo -e "Available params:\n${opts[@]}"
         exit 1
     fi
 }
 
 function change_wallpaper() {
-    # getting all the wallpapers
-    local opts=$(ls "$2/$1")
-    local wallpapers=()
-    for i in $opts
-    do
-        wallpapers+=($i)
-    done
-
     # path to file
     local ptf="$wallpapers_dir/$1"
 
+    # getting all the wallpapers
+    local wallpapers=($(ls "$2/$1"))
     local len=${#wallpapers[@]}
 
     while true
@@ -56,6 +49,6 @@ function change_wallpaper() {
     done
 }
 
-kill_prev
 validate_input $1
+kill_prev
 change_wallpaper $1 $wallpapers_dir & disown

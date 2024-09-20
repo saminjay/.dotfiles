@@ -2,8 +2,8 @@
 alias ls="ls -F --color"
 alias lsa="ls -Fa"
 alias c=clear
-alias vim=nvim
 alias grep="grep --color=always"
+alias td="nvim ~/.personal/TODO.md"
 
 # frequent dirs
 alias personal="cd ~/.personal"
