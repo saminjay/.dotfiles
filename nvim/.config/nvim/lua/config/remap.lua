@@ -27,9 +27,10 @@ vim.keymap.set("n", "<leader>Y", [["+Y]])
 -- deletes to the void buffer
 vim.keymap.set({"n", "v"}, "<leader>d", [["_d]])
 
-vim.keymap.set("n", "Q", "<nop>")
+-- TEST: check and test
+-- vim.keymap.set("n", "Q", "<nop>")
 
--- TEST: test this
+-- TODO: Write a tmux-sessionizer
 -- vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
 
 vim.keymap.set("n", "<leader>f", vim.lsp.buf.format)
@@ -41,6 +42,7 @@ vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
 
 -- replace the current word in entire file
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+
 vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>")
 
 vim.keymap.set("n", "<leader>vpp", "<cmd>e ~/.config/nvim/lua/config/lazy.lua<CR>");
