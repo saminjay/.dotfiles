@@ -1,4 +1,7 @@
 export XDG_CONFIG_HOME=~/.config
+export GBM_BACKEND=nvidia-drm
+
+export __GLX_VENDOR_LIBRARY_NAME=nvidia
 export XDG_DATA_SHARE=~/.local/share
 export XDG_CACHE_HOME=~/.cache
 

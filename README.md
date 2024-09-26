@@ -4,7 +4,6 @@
 A GPU accelerated Terminal Emulator
 ```bash
 sudo pacman -S alacritty
-mkdir ~/.config/alacritty/
 stow alacritty
 ```
 
@@ -13,7 +12,6 @@ A Terminal multiplexer, to store multiple sessions and open panes and windows in
 ```bash
 sudo pacman -S tmux
 git clone https://github.com/tmux-plugins/tpm ${XDG_DATA_SHARE}/tmux/plugins/tpm
-mkdir ~/.config/tmux/
 stow tmux
 ```
 
@@ -23,7 +21,6 @@ Fork of bash with many new features and config options
 sudo pacman -S zsh
 sudo chsh -s ${which zsh}
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${XDG_DATA_SHARE}/powerlevel10k
-mkdir ~/.config/zsh/
 stow zsh
 ```
 
@@ -31,7 +28,6 @@ stow zsh
 Fork of vim with many new features and config options
 ```bash
 sudo pacman -S nvim
-mkdir ~/.config/nvim/
 stow nvim
 ```
 
@@ -62,7 +58,21 @@ Installed through mason or from AUR repos
 sudo pacman -S stow wget ripgrep luarock fzf
 ```
 
-## Acknowledgements
+# Hyprland
+A dynamic tiling window manager
+```bash
+sudo pacman -S hyprland
+stow hypr
+```
+
+# Waybar
+Highly configurable statusbar for Hyprland
+```bash
+sudo pacman -S Swaync
+stow swaync
+```
+
+# Acknowledgements
 - ThePrimeagen [config](https://github.com/ThePrimeagen/init.lua) [video](https://youtu.be/w7i4amO_zaE?si=d2d7WdR7mMQLEBfN)
 - Dreams of Code [config](https://github.com/dreamsofcode-io/dotfiles) [video](https://youtu.be/DzNmUNvnB04?si=dmjmJUhEmUyrRM2g)
 - NVIM kickstart [config](https://github.com/nvim-lua/kickstart.nvim)
