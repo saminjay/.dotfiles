@@ -64,6 +64,10 @@ A dynamic tiling window manager
 sudo pacman -S hyprland
 stow hypr
 ```
+Force gdm to use wayland
+```bash
+ln -s /dev/null /etc/udev/rules.d/61-gdm.rules
+```
 
 # Waybar
 Highly configurable statusbar for Hyprland
