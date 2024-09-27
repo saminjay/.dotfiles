@@ -1,14 +1,13 @@
 {
     "layer": "top", // Waybar at top layer
     "position": "top", // Waybar position (top|bottom|left|right)
-    "margin": "9 13 5 18",
+    "margin": "5 10 0 10", // top right bottom left
     // Choose the order of the modules
     "modules-left": [
-        "hyprland/workspaces",
-        "keyboard-state",
-        "hyprland/submap"
+        "hyprland/workspaces"
     ],
     "modules-center": [
+        "custom/notif",
         "clock"
     ],
     "modules-right": [
@@ -26,31 +25,34 @@
     "hyprland/workspaces": {
         "disable-scroll": true,
     },
-    "hyprland/language": {
-        "format-en": "US",
-        "format-ru": "RU",
-        "min-length": 5,
-        "tooltip": false
-    },
-    "keyboard-state": {
-        "numlock": true,
-        "capslock": true,
-        "format": "{icon} ",
+    "custom/notif": {
+        "tooltip": false,
+        "format": "{icon}",
         "format-icons": {
-            "locked": " ",
-            "unlocked": ""
+            "notification": "<span foreground='red'><sup></sup></span>",
+            "none": "",
+            "dnd-notification": "<span foreground='red'><sup></sup></span>",
+            "dnd-none": "",
+            "inhibited-notification": "<span foreground='red'><sup></sup></span>",
+            "inhibited-none": "",
+            "dnd-inhibited-notification": "<span foreground='red'><sup></sup></span>",
+            "dnd-inhibited-none": ""
         },
-    },
-    "hyprland/submap": {
-        "format": "pon {}"
+        "return-type": "json",
+        "exec-if": "which swaync-client",
+        "exec": "swaync-client -swb",
+        "on-click": "swaync-client -t -sw",
+        "on-click-right": "swaync-client -d -sw",
+        "escape": true
     },
     "clock": {
         "interval": 1,
         "format": "{:%a, %d %b, %H:%M:%S}",
-        "tooltip": false
+        "tooltip": false,
+        "on-click": "swaync-client -t -sw"
     },
     "pulseaudio": {
-        // "scroll-step": 1, // %, can be a float
+        "scroll-step": 1, // %, can be a float
         "reverse-scrolling": 1,
         "format": "{volume}% {icon} {format_source}",
         "format-bluetooth": "{volume}% {icon} {format_source}",
@@ -114,8 +116,15 @@
         "format-charging": "{capacity}% ",
         "format-plugged": "{capacity}% ",
         "format-alt": "{time} {icon}",
-        "format-icons": ["", "", "", "", ""],
+        "format-icons": [
+            "",
+            "",
+            "",
+            "",
+            ""
+        ],
         "tooltip": false,
+        "interval": 1
     },
     "tray": {
         "icon-size": 16,
