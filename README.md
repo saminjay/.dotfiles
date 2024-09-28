@@ -58,10 +58,10 @@ Installed through mason or from AUR repos
 sudo pacman -S stow wget ripgrep luarock fzf
 ```
 
-# Hyprland
+# [Hyprland](https://wiki.hyprland.org/)
 A dynamic tiling window manager
 ```bash
-sudo pacman -S hyprland
+sudo pacman -S hyprland hyprpaper
 stow hypr
 ```
 Force gdm to use wayland
@@ -69,14 +69,22 @@ Force gdm to use wayland
 ln -s /dev/null /etc/udev/rules.d/61-gdm.rules
 ```
 
-# Waybar
+# [Waybar](https://github.com/Alexays/Waybar/wiki)
 Highly configurable statusbar for Hyprland
 ```bash
 sudo pacman -S Swaync
 stow swaync
 ```
 
+# [Wofi](https://hg.sr.ht/~scoopta/wofi)
+Highly configurable application launcher
+```bash
+sudo pacman -S wofi
+stow wofi
+```
+
 # Acknowledgements
 - ThePrimeagen [config](https://github.com/ThePrimeagen/init.lua) [video](https://youtu.be/w7i4amO_zaE?si=d2d7WdR7mMQLEBfN)
 - Dreams of Code [config](https://github.com/dreamsofcode-io/dotfiles) [video](https://youtu.be/DzNmUNvnB04?si=dmjmJUhEmUyrRM2g)
-- NVIM kickstart [config](https://github.com/nvim-lua/kickstart.nvim)
+- NVIM kickstart [config](https://github.com/nvim-lua/kickstart.nvim) [video](https://youtu.be/m8C0Cq9Uv9o?si=fzcdA9iQVWZahCT2)
+- Wofi Tutorial [link](https://mephisto.cc/en/tech/wofi/)

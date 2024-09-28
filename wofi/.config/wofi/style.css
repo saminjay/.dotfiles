@@ -1,0 +1,73 @@
+/* Macchiato Rosewater */
+@define-color accent #f4dbd6;
+@define-color txt #cad3f5;
+@define-color win-bg #24273a;
+@define-color input-bg #494d64;
+
+* {
+    font-family: 'CodeNewRoman Nerd Font';
+    font-size: 16px;
+}
+
+/* Slide In */
+@keyframes slideIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+/* Inner Box */
+#inner-box {
+    padding: 16px;
+    background-color: @win-bg;
+    animation: fadeIn 0.5s ease-in-out both;
+}
+
+/* Fade In */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+/* Outer Box */
+#outer-box {
+    padding: 10px;
+    border: none;
+    border-radius: 16px;
+    background-color: @win-bg;
+}
+
+/* Scroll */
+#scroll {
+    margin: 0px;
+    padding-bottom: 16px;
+    border: none;
+}
+
+/* Input */
+#input {
+    margin: 16px 16px 8px 16px;
+    padding: 10px;
+    border: none;
+    color: @accent;
+    background-color: @input-bg;
+    animation: fadeIn 0.5s ease-in-out both;
+}
+
+/* Text */
+#text {
+    margin: 5px;
+    padding: 10px;
+    border: none;
+    color: @txt;
+    animation: fadeIn 0.5s ease-in-out both;
+}
+
+/* Selected Entry */
+#entry:selected {
+    background-color: @accent;
+    color: @txt;
+}
