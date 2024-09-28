@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Wallpaper directory
-wallpapers_dir="${HOME}/Pictures/Wallpapers"
+wallpapers_dir="${HOME}/.wallpapers"
 
 function kill_prev() {
     # pgrep returns pid
@@ -46,7 +46,7 @@ function change_wallpaper() {
         # actually setting the wallpaper
         # eval gsettings set org.gnome.desktop.background picture-uri-dark "$ptf/${wallpapers[idx]}"
         eval hyprctl hyprpaper preload "$ptf/${wallpapers[idx]}" >/dev/null 2>&1
-        eval hyprctl hyprpaper wallpaper ",$ptf/${wallpapers[idx]}" >/dev/null 2>&1
+        eval hyprctl hyprpaper wallpaper ",contain:$ptf/${wallpapers[idx]}" >/dev/null 2>&1
         sleep 5m
     done
 }
