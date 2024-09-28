@@ -22,7 +22,7 @@
     //*  Modules configuration  *
     //***************************
     "hyprland/workspaces": {
-        "disable-scroll": true,
+        "disable-scroll": true
     },
     "custom/notif": {
         "tooltip": false,
@@ -68,7 +68,6 @@
             ]
         },
         "on-click": "pavucontrol",
-        "min-length": 13,
         "tooltip": false
     },
     "custom/mem": {
@@ -121,7 +120,7 @@
             " ",
             " "
         ],
-        "tooltip": false,
+        "tooltip-format": "health: {health}%",
         "interval": 1
     },
     "tray": {
