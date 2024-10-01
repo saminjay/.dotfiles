@@ -1,0 +1,30 @@
+#!/bin/bash
+
+function notify() {
+    notify-send --app-name="Battery Monitor" --urgency="critical" "$1"
+}
+
+function monitor() {
+    local bat_path=$(upower -e | grep battery_BAT)
+    local adapter_path=$(upower -e | grep line_power)
+
+    while true
+    do
+        local bat_percent=$(upower -i $bat_path | grep 'percentage:' | awk '{ print $2 }' | sed 's/%//')
+        local plugged=$(upower -i $adapter_path | grep -A2 'line-power' | grep online | awk '{ print $2 }')
+
+        if [[ $plugged == 'yes' ]]; then
+            if [[ $bat_percent -gt 80 ]]; then
+                notify "Battery reached 80%, unplug the power cable."
+            fi
+        else
+            if [[ $bat_percent -lt 50 ]]; then
+                notify "Battery is below 50%, plug in the power cable."
+            fi
+        fi
+
+        sleep 1m
+    done
+}
+
+monitor & disown >/dev/null 2>&1
