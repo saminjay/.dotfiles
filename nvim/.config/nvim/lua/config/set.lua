@@ -40,3 +40,7 @@ vim.opt.updatetime = 50
 
 vim.opt.colorcolumn = "81,101"
 
+vim.opt.timeout = false
+vim.opt.ttimeout = false
+
+vim.opt.showmode = false

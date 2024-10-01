@@ -24,7 +24,7 @@ vim.keymap.set("x", "<leader>p", [["_dP]])
 vim.keymap.set({"n", "v"}, "<leader>y", [["+y]])
 vim.keymap.set("n", "<leader>Y", [["+Y]])
 
--- deletes to the void buffer
+-- deletes to the void register
 vim.keymap.set({"n", "v"}, "<leader>d", [["_d]])
 
 -- TEST: check and test
@@ -32,8 +32,6 @@ vim.keymap.set({"n", "v"}, "<leader>d", [["_d]])
 
 -- TODO: Write a tmux-sessionizer
 -- vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
-
-vim.keymap.set("n", "<leader>f", vim.lsp.buf.format)
 
 vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz")
 vim.keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz")
