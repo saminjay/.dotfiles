@@ -30,6 +30,16 @@ function validate_input() {
     fi
 }
 
+function change_hyprpaper() {
+    eval hyprctl hyprpaper unload all >/dev/null 2>&1
+    eval hyprctl hyprpaper preload "$1" >/dev/null 2>&1
+    eval hyprctl hyprpaper wallpaper ",$1" >/dev/null 2>&1
+}
+
+function change_gnome_wallpaper() {
+    eval gsettings set org.gnome.desktop.background picture-uri-dark "$1"
+}
+
 function change_wallpaper() {
     # path to file
     local ptf="$wallpapers_dir/$1"
@@ -44,13 +54,13 @@ function change_wallpaper() {
         local idx=$((RANDOM % len))
 
         # actually setting the wallpaper
-        # eval gsettings set org.gnome.desktop.background picture-uri-dark "$ptf/${wallpapers[idx]}"
-        eval hyprctl hyprpaper preload "$ptf/${wallpapers[idx]}" >/dev/null 2>&1
-        eval hyprctl hyprpaper wallpaper ",contain:$ptf/${wallpapers[idx]}" >/dev/null 2>&1
+        # change_gnome_wallpaper "$ptf/${wallpapers[idx]}"
+        change_hyprpaper "$ptf/${wallpapers[idx]}"
         sleep 5m
     done
 }
 
 validate_input $1
 kill_prev
-change_wallpaper $1 $wallpapers_dir & disown >/dev/null 2>&1
+change_wallpaper $1 $wallpapers_dir & disown
+
