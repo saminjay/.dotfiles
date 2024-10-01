@@ -3,6 +3,7 @@
     "position": "top",
     "margin": "5 10 0 10", // top right bottom left
     "modules-left": [
+        "custom/launcher",
         "hyprland/workspaces"
     ],
     "modules-center": [
@@ -21,6 +22,10 @@
     //***************************
     //*  Modules configuration  *
     //***************************
+    "custom/launcher": {
+        "format": "󰣇"
+        // "on-click": "wofi",
+    },
     "hyprland/workspaces": {
         "disable-scroll": true
     },
@@ -56,15 +61,15 @@
         "format": "{volume}% {icon} {format_source}",
         "format-bluetooth": "{volume}% {icon} {format_source}",
         "format-bluetooth-muted": " {icon} {format_source}",
-        "format-muted": " {format_source}",
-        "format-source": " {volume}% ",
-        "format-source-muted": "",
+        "format-muted": "  {format_source}",
+        "format-source": "{volume}% ",
+        "format-source-muted": " ",
         "format-icons": {
-            "headphone": "",
+            "headphone": " ",
             "default": [
-                "",
-                "",
-                ""
+                " ",
+                " ",
+                " "
             ]
         },
         "on-click": "pavucontrol",

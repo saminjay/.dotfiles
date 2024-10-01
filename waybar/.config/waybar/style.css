@@ -14,8 +14,14 @@ window#waybar.hidden {
 
 /* .modules-left {} */
 
-#workspaces {
+#custom-launcher {
+    font-size: 28px;
     margin-right: 8px;
+    color: #1793d1;
+}
+
+#workspaces {
+    margin-left: 8px;
     border-radius: 20px;
     transition: none;
     background: #383c4a;
@@ -25,7 +31,6 @@ window#waybar.hidden {
     transition: none;
     color: #7c818c;
     background: transparent;
-    padding: 5px;
     font-size: 18px;
 }
 
@@ -77,7 +82,8 @@ window#waybar.hidden {
     border-radius: 20px;
 }
 
-#pulseaudio.muted {
+#pulseaudio.muted,
+#pulseaudio.source-muted {
     background-color: #90b1b1;
     color: #2a5c45;
 }
