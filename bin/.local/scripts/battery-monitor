@@ -1,30 +1,49 @@
 #!/bin/bash
 
+function kill_prev() {
+    # pgrep returns pid
+    # BASH_SOURCE returns current script name
+    # $$ contains current pid (grep ignore so it doesn't suicide)
+    kill $(pgrep -f ${BASH_SOURCE[0]} | grep -v $$) >/dev/null 2>&1
+}
+
 function notify() {
-    notify-send --app-name="Battery Monitor" --urgency="critical" "$1"
+    notify-send -w --app-name="Battery Monitor" --urgency="critical" "$1" "$2" &
+}
+
+function get_plugged() {
+    local adapter_path=$(upower -e | grep line_power)
+    upower -i $adapter_path | grep -A2 'line-power' | grep online | awk '{ print $2 }'
+}
+
+function get_percentage() {
+    local bat_path=$(upower -e | grep battery_BAT)
+    upower -i $bat_path | grep 'percentage:' | awk '{ print $2 }' | sed 's/%//'
 }
 
 function monitor() {
-    local bat_path=$(upower -e | grep battery_BAT)
-    local adapter_path=$(upower -e | grep line_power)
-
     while true
     do
-        local bat_percent=$(upower -i $bat_path | grep 'percentage:' | awk '{ print $2 }' | sed 's/%//')
-        local plugged=$(upower -i $adapter_path | grep -A2 'line-power' | grep online | awk '{ print $2 }')
+        local bat_percent=$(get_percentage)
 
-        if [[ $plugged == 'yes' ]]; then
-            if [[ $bat_percent -gt 80 ]]; then
-                notify "Battery reached 80%, unplug the power cable."
+        if [[ $(get_plugged) == "yes" ]]; then
+            if [[ $bat_percent -gt 70 ]]; then
+                notify "Battery reached 70%" "Unplug the power cable." >/dev/null 2>&1
+                while [ $(get_plugged) == "yes" ]; do :; done
+                kill -2 $!
             fi
         else
             if [[ $bat_percent -lt 50 ]]; then
-                notify "Battery is below 50%, plug in the power cable."
+                notify "Battery is below 50%" "Plug in the power cable." >/dev/null 2>&1
+                while [ $(get_plugged) == "no" ]; do :; done
+                kill -2 $!
             fi
         fi
 
-        sleep 1m
+        sleep 5m
     done
 }
 
+kill_prev
 monitor & disown >/dev/null 2>&1
+
