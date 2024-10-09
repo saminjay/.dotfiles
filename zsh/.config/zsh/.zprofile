@@ -1,9 +1,9 @@
 # handy cmds
 alias ls="ls -F --color"
 alias lsa="ls -Fa"
-alias c=clear
 alias grep="grep --color=always"
 alias td="nvim ~/.personal/TODO.md"
+alias v="nvim"
 
 # frequent dirs
 alias personal="cd ~/.personal"
