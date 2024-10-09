@@ -83,6 +83,11 @@ return {
                 bashls = {},
                 marksman = {},
                 jsonls = {},
+                pyright = {},
+                taplo = {
+                    -- IMPORTANT: this is required for taplo LSP to work in non-git repositories
+                    root_dir = require('lspconfig.util').root_pattern('*.toml', '.git'),
+                },
             }
 
             local ensure_installed = vim.tbl_keys(servers)
