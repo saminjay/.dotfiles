@@ -50,13 +50,13 @@ function change_wallpaper() {
 
     while true
     do
+        sleep 5m
         # randomly choose a wallpaper
         local idx=$((RANDOM % len))
 
         # actually setting the wallpaper
         # change_gnome_wallpaper "$ptf/${wallpapers[idx]}"
         change_hyprpaper "$ptf/${wallpapers[idx]}"
-        sleep 5m
     done
 }
 
