@@ -24,23 +24,24 @@ function get_percentage() {
 function monitor() {
     while true
     do
+        sleep 10s
         local bat_percent=$(get_percentage)
 
         if [[ $(get_plugged) == "yes" ]]; then
             if [[ $bat_percent -gt 70 ]]; then
                 notify "Battery reached 70%" "Unplug the power cable." >/dev/null 2>&1
+                ~/.local/python/ty-plug/ty-plug -s off
                 while [ $(get_plugged) == "yes" ]; do :; done
                 kill -2 $!
             fi
         else
-            if [[ $bat_percent -lt 50 ]]; then
-                notify "Battery is below 50%" "Plug in the power cable." >/dev/null 2>&1
+            if [[ $bat_percent -lt 60 ]]; then
+                notify "Battery is below 60%" "Plug in the power cable." >/dev/null 2>&1
+                ~/.local/python/ty-plug/ty-plug -s on
                 while [ $(get_plugged) == "no" ]; do :; done
                 kill -2 $!
             fi
         fi
-
-        sleep 5m
     done
 }
 
