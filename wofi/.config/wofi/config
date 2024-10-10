@@ -12,3 +12,5 @@ parse_search=true
 gtk_dark=true
 orientation=vertical
 key_expand=space
+line_wrap=word
+
