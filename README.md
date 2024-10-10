@@ -11,7 +11,7 @@ stow alacritty
 A Terminal multiplexer, to store multiple sessions and open panes and windows inside the terminal
 ```bash
 sudo pacman -S tmux
-git clone https://github.com/tmux-plugins/tpm ${XDG_DATA_SHARE}/tmux/plugins/tpm
+git clone https://github.com/tmux-plugins/tpm ${XDG_DATA_HOME}/tmux/plugins/tpm
 stow tmux
 ```
 
@@ -20,9 +20,10 @@ Fork of bash with many new features and config options
 ```bash
 sudo pacman -S zsh
 sudo chsh -s ${which zsh}
-git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${XDG_DATA_SHARE}/powerlevel10k
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${XDG_DATA_HOME}/powerlevel10k
 stow zsh
 ```
+PS: ZSH does not support XDG_Base_Directory spec, so `export ZDOTDIR=$HOME/.config/zsh/` at the start up. I've done so in Hyprland environment variable.
 
 # [NVIM](https://github.com/neovim/neovim)
 Fork of vim with many new features and config options
