@@ -1,10 +1,28 @@
 #!/bin/bash
 
+function usage() {
+    echo ""
+    echo "Usage: ${0##*/} [--min <int>] [--max <int>] [-k | --kill]"
+    echo ""
+    echo "--min=<int>           minimum battery percentage,"
+    echo "                      should be greater than 0 and less than max"
+    echo "                      defaults to 60"
+    echo ""
+    echo "--max=<int>           maximum battery percentage,"
+    echo "                      should be less than 100 and greater than min"
+    echo "                      defaults to 70"
+    echo ""
+    echo "-k, --kill            kill all the instances of this script"
+    echo "                      Note: a successfull run will also kill all the previous instances"
+    echo ""
+    echo "-h, -?, --help        show this message than exit"
+}
+
 function kill_prev() {
     # pgrep returns pid
-    # BASH_SOURCE returns current script name
+    # $0 returns current script name
     # $$ contains current pid (grep ignore so it doesn't suicide)
-    kill $(pgrep -f ${BASH_SOURCE[0]} | grep -v $$) >/dev/null 2>&1
+    kill $(pgrep -f $0 | grep -v $$) >/dev/null 2>&1
 }
 
 function notify() {
@@ -28,15 +46,15 @@ function monitor() {
         local bat_percent=$(get_percentage)
 
         if [[ $(get_plugged) == "yes" ]]; then
-            if [[ $bat_percent -ge 70 ]]; then
-                notify "Battery reached 70%" "Unplug the power cable." >/dev/null 2>&1
+            if [[ $bat_percent -ge $2 ]]; then
+                notify "Battery reached $2%" "Unplug the power cable." >/dev/null 2>&1
                 ~/.local/python/ty-plug/ty-plug -s off
                 while [ $(get_plugged) == "yes" ]; do :; done
                 kill -2 $!
             fi
         else
-            if [[ $bat_percent -le 60 ]]; then
-                notify "Battery is below 60%" "Plug in the power cable." >/dev/null 2>&1
+            if [[ $bat_percent -le $1 ]]; then
+                notify "Battery is below $1%" "Plug in the power cable." >/dev/null 2>&1
                 ~/.local/python/ty-plug/ty-plug -s on
                 while [ $(get_plugged) == "no" ]; do :; done
                 kill -2 $!
@@ -45,6 +63,53 @@ function monitor() {
     done
 }
 
+#################################################################
+#                   Main Program                                #
+#                                                               #
+#################################################################
+
+min=60
+max=70
+
+while :;
+do
+    case $1 in
+        -h|-\?|--help)
+            usage
+            exit 0
+            ;;
+        -k|--kill)
+            kill_prev
+            echo "All processes killed"
+            exit 0
+            ;;
+        --min=?*)
+            min=${1#*=}
+            ;;
+        --max=?*)
+            max=${1#*=}
+            ;;
+        *)
+            shift
+            break
+    esac
+    shift
+done
+
+if [[ $min -ge $max ]]; then
+    echo "ERROR: min cannot be greater than or equal to max"
+    usage
+    exit 1
+elif [[ $min -le 0 ]]; then
+    echo "ERROR: min cannot be less than or equal to 0"
+    usage
+    exit 1
+elif [[ $max -ge 100 ]]; then
+    echo "ERROR: max cannot be greater than or equal to 100"
+    usage
+    exit 1
+fi
+
 kill_prev
-monitor & disown >/dev/null 2>&1
+monitor $min $max & disown >/dev/null 2>&1
 
