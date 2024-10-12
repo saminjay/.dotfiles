@@ -1,0 +1,6 @@
+\.git
+\.gitignore
+\.gitmodules
+install.sh
+README.md
+\.stowrc

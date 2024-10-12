@@ -4,7 +4,6 @@
 A GPU accelerated Terminal Emulator
 ```bash
 sudo pacman -S alacritty
-stow alacritty
 ```
 
 # [TMUX](https://github.com/tmux/tmux/wiki)
@@ -12,7 +11,6 @@ A Terminal multiplexer, to store multiple sessions and open panes and windows in
 ```bash
 sudo pacman -S tmux
 git clone https://github.com/tmux-plugins/tpm ${XDG_DATA_HOME}/tmux/plugins/tpm
-stow tmux
 ```
 
 # [ZSH](https://www.zsh.org/)
@@ -21,7 +19,6 @@ Fork of bash with many new features and config options
 sudo pacman -S zsh
 sudo chsh -s ${which zsh}
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${XDG_DATA_HOME}/powerlevel10k
-stow zsh
 ```
 PS: ZSH does not support XDG_Base_Directory spec, so `export ZDOTDIR=$HOME/.config/zsh/` at the start up. I've done so in Hyprland environment variable.
 
@@ -29,25 +26,7 @@ PS: ZSH does not support XDG_Base_Directory spec, so `export ZDOTDIR=$HOME/.conf
 Fork of vim with many new features and config options
 ```bash
 sudo pacman -S nvim
-stow nvim
 ```
-
-## LSPs
-Installed using pacman 
-- typescript-language-server
-- bash-language-server
-- marksman
-- gopls
-- lua-language-server
-
-```bash
-sudo pacman -S typescript-language-server bash-language-server marksman gopls lua-language-server
-```
-
-Installed through mason or from AUR repos
-- clangd
-- html-language-server
-- css-language-server
 
 ## System level packages
 - stow
@@ -63,7 +42,6 @@ sudo pacman -S stow wget ripgrep luarock fzf
 A dynamic tiling window manager
 ```bash
 sudo pacman -S hyprland hyprpaper
-stow hypr
 ```
 Force gdm to use wayland
 ```bash
@@ -74,14 +52,12 @@ ln -s /dev/null /etc/udev/rules.d/61-gdm.rules
 Highly configurable statusbar for Hyprland
 ```bash
 sudo pacman -S Swaync
-stow swaync
 ```
 
 # [Wofi](https://hg.sr.ht/~scoopta/wofi)
 Highly configurable application launcher
 ```bash
 sudo pacman -S wofi
-stow wofi
 ```
 
 # Acknowledgements
