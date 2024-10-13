@@ -12,8 +12,11 @@ function usage() {
     echo "                      should be less than 100 and greater than min"
     echo "                      defaults to 70"
     echo ""
-    echo "-k, --kill            kill all the instances of this script"
+    echo "--quiet, -q           don't show notifications"
+    echo ""
+    echo "-k, --kill            kill all the instances of this script and exit"
     echo "                      Note: a successfull run will also kill all the previous instances"
+    echo "                            should not be matched with other options"
     echo ""
     echo "-h, -?, --help        show this message than exit"
 }
@@ -47,17 +50,17 @@ function monitor() {
 
         if [[ $(get_plugged) == "yes" ]]; then
             if [[ $bat_percent -ge $2 ]]; then
-                notify "Battery reached $2%" "Unplug the power cable." >/dev/null 2>&1
+                $3 && notify "Battery reached $2%" "Unplug the power cable." >/dev/null 2>&1
                 ~/.local/python/ty-plug/ty-plug -s off
                 while [ $(get_plugged) == "yes" ]; do :; done
-                kill -2 $!
+                $3 && kill -2 $!
             fi
         else
             if [[ $bat_percent -le $1 ]]; then
-                notify "Battery is below $1%" "Plug in the power cable." >/dev/null 2>&1
+                $3 && notify "Battery is below $1%" "Plug in the power cable." >/dev/null 2>&1
                 ~/.local/python/ty-plug/ty-plug -s on
                 while [ $(get_plugged) == "no" ]; do :; done
-                kill -2 $!
+                $3 && kill -2 $!
             fi
         fi
     done
@@ -70,7 +73,7 @@ function monitor() {
 
 min=60
 max=70
-
+should_notify=true
 while :;
 do
     case $1 in
@@ -88,6 +91,14 @@ do
             ;;
         --max=?*)
             max=${1#*=}
+            ;;
+        --quiet|-q)
+            should_notify=false
+            ;;
+        ?*)
+            echo "ERROR: $1 is in an invalid option. See usage"
+            usage
+            exit 1
             ;;
         *)
             shift
@@ -111,5 +122,5 @@ elif [[ $max -ge 100 ]]; then
 fi
 
 kill_prev
-monitor $min $max & disown >/dev/null 2>&1
+monitor $min $max $should_notify & disown >/dev/null 2>&1
 

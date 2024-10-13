@@ -1,20 +1,20 @@
 #!/bin/bash
 
-config_dir="$HOME/.config"
-dirs=$(ls -d */)
+# install all required packages
+sudo pacman -S - < packages.txt
 
-for i in $dirs
-do
-    if [ $i = "bin/" ]; then
-        echo "Stowing local scrpits"
-         mkdir -p "$HOME/.local/scripts"
-        stow bin
-    elif [ $i -ne "personal" ]; then
-        echo "Stowing $i"
-         mkdir -p "$config_dir/$i"
-         stow $i
-    fi
-done
+# Tmux Plugin Manager
+git clone --depth=1 https://github.com/tmux-plugins/tpm ${XDG_DATA_HOME}/tmux/plugins/tpm
 
-echo "Stowing personal"
-stow personal
+# Powerlevel10k theme for zsh
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${XDG_DATA_HOME}/powerlevel10k
+
+# TODO:
+# Change shell to zsh
+# sudo chsh -s $(which zsh)
+
+# Force gdm to use wayland
+ln -s /dev/null /etc/udev/rules.d/61-gdm.rules
+
+stow --dotfiles .
+

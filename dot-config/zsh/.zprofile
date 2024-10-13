@@ -1,6 +1,7 @@
 # handy cmds
 alias ls="ls -F --color"
-alias lsa="ls -Fa"
+alias lsa="ls -a"
+alias lsl="ls -lh"
 alias grep="grep --color=always"
 alias td="nvim ~/.personal/TODO.md"
 alias v="nvim"

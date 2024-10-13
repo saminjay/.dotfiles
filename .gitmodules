@@ -1,3 +1,7 @@
 [submodule "personal"]
-	path = personal
+	path = dot-personal
 	url = https://github.com/saminjay/personal.git
+
+[submodule "wallpapers"]
+	path = dot-wallpapers
+	url = https://github.com/saminjay/wallpapers.git
