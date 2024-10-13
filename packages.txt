@@ -1,5 +1,6 @@
 alacritty
 bash-language-server
+btop
 cliphist
 fzf
 gopls
