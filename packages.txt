@@ -20,12 +20,15 @@ pavucontrol
 pyright
 qt5ct
 qt6ct
+ripgrep
 screenfetch
 stow
+swaync
 tmux
 tree-sitter-cli
 typescript-language-server
 waybar
+wget
 wireplumber
 wl-clipboard
 wofi
