@@ -9,9 +9,6 @@ A Terminal multiplexer, to store multiple sessions and open panes and windows in
 
 ## [ZSH](https://www.zsh.org/)
 Fork of bash with many new features and config options
-```bash
-sudo chsh -s ${which zsh}
-```
 PS: ZSH does not support XDG_Base_Directory spec, so `export ZDOTDIR=$HOME/.config/zsh/` at the start up. I've done so in Hyprland environment variable.
 
 ## [NVIM](https://github.com/neovim/neovim)
