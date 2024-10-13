@@ -2,5 +2,7 @@
 \.gitignore
 \.gitmodules
 install.sh
+packages.txt
 README.md
 \.stowrc
+
