@@ -15,17 +15,17 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 
--- keeps the original copy buffer after paste
--- deletes the selected txt to void register
-vim.keymap.set("x", "<leader>p", [["_dP]])
+-- pastes from the clipboard/+ register
+vim.keymap.set({ "n", "x" }, "<leader>P", [["+P]])
 
 -- next greatest remap ever : asbjornHaland
--- yanks to the + register
-vim.keymap.set({"n", "v"}, "<leader>y", [["+y]])
+-- yanks to the + register/clipboard
+vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
 vim.keymap.set("n", "<leader>Y", [["+y$]]) -- 'Y' is remapped to 'y$' in nvim
 
 -- deletes to the void register
-vim.keymap.set({"n", "v"}, "<leader>d", [["_d]])
+vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
+vim.keymap.set("n", "<leader>D", [["_D]])
 
 -- TEST: check and test
 -- vim.keymap.set("n", "Q", "<nop>")
@@ -46,6 +46,6 @@ vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>")
 vim.keymap.set("n", "<leader>vpp", "<cmd>e ~/.config/nvim/lua/config/lazy.lua<CR>");
 
 -- Treesitter playground
-vim.keymap.set("n", "<leader>TS", function ()
+vim.keymap.set("n", "<leader>TS", function()
     vim.treesitter.inspect_tree({ command = "40vnew" })
 end)
