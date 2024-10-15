@@ -20,6 +20,7 @@ function validate_input() {
     do
         if [ "$1" = "$i" ]; then
             fl=1
+            group=$1
         fi
     done
 
@@ -42,15 +43,15 @@ function change_gnome_wallpaper() {
 
 function change_wallpaper() {
     # path to file
-    local ptf="$wallpapers_dir/$1"
+    local ptf="$wallpapers_dir/$group"
 
     # getting all the wallpapers
-    local wallpapers=($(ls "$2/$1"))
+    local wallpapers=($(ls $ptf))
     local len=${#wallpapers[@]}
 
     while true
     do
-        sleep 5m
+        sleep 1m
         # randomly choose a wallpaper
         local idx=$((RANDOM % len))
 
@@ -60,7 +61,11 @@ function change_wallpaper() {
     done
 }
 
-validate_input $1
-kill_prev
-change_wallpaper $1 $wallpapers_dir & disown
+function main() {
+    local group=
+    validate_input $@
+    kill_prev
+    change_wallpaper & disown
+}
 
+main $@
