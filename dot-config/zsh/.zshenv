@@ -24,4 +24,5 @@ export PATH
 export HISTFILE=$XDG_CACHE_HOME/zsh/.zhistory
 export HISTSIZE=5000
 export SAVEHIST=5000
+export HISTORY_IGNORE="(ls|cd|pwd|exit|cd ..|lsa|lsl|htop|btop|td)"
 
