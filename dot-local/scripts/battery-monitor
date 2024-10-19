@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 function usage() {
     echo ""
@@ -101,14 +101,24 @@ function monitor() {
             if [[ $bat_percent -ge $max ]]; then
                 $should_notify && notify "Battery reached $max%" "Unplug the power cable." >/dev/null 2>&1
                 ~/.local/python/ty-plug/ty-plug -s off
-                while [ $(get_plugged) == "yes" ]; do :; done
+                local i=0
+                while [ $(get_plugged) == "yes" ] && [ $i -lt 100 ];
+                do
+                    i=$i+1
+                    sleep 0.1
+                done
                 $should_notify && kill -2 $!
             fi
         else
             if [[ $bat_percent -le $min ]]; then
                 $should_notify && notify "Battery is below $min%" "Plug in the power cable." >/dev/null 2>&1
                 ~/.local/python/ty-plug/ty-plug -s on
-                while [ $(get_plugged) == "no" ]; do :; done
+                local i=0
+                while [ $(get_plugged) == "no" ] && [ $i -lt 100 ];
+                do
+                    i=$i+1
+                    sleep 0.1
+                done
                 $should_notify && kill -2 $!
             fi
         fi
