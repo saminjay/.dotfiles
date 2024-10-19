@@ -24,7 +24,7 @@ vim.opt.wrap = false
 -- no backup but store undos
 vim.opt.swapfile = false
 vim.opt.backup = false
-vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
+vim.opt.undodir = os.getenv("XDG_DATA_HOME") .. "/nvim/undodir"
 vim.opt.undofile = true
 
 vim.opt.hlsearch = false
@@ -44,3 +44,9 @@ vim.opt.timeout = false
 vim.opt.ttimeout = false
 
 vim.opt.showmode = false
+
+vim.opt.fillchars = { fold = " " }
+vim.opt.foldmethod = "indent"
+vim.opt.foldenable = true
+vim.opt.foldlevel = 99
+vim.g.markdown_folding = 1 -- enable markdown folding

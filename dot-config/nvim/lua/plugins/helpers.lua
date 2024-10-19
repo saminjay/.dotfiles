@@ -1,25 +1,4 @@
-local todo_comments = {
-    "folke/todo-comments.nvim",
-    event = "BufRead",
-    dependencies = { "nvim-lua/plenary.nvim" },
-    opts = {
-        signs = false,
-    },
-}
-
-local highlight_colors = {
-    "brenoprata10/nvim-highlight-colors",
-    opts = {},
-}
-
--- TODO: remove after getting comfortable
-local hardtime = {
-   "m4xshen/hardtime.nvim",
-    event = "BufRead",
-   dependencies = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
-   opts = {}
-};
-
+-- FIXIT: doesn't open properly in files
 local which_key = {
     "folke/which-key.nvim",
     event = "VeryLazy",
@@ -40,9 +19,46 @@ local which_key = {
 }
 
 return {
-    todo_comments,
-    highlight_colors,
-    hardtime,
-    -- which_key,   -- FIXIT: doesn't open properly in files
-}
-
+    {
+        "folke/todo-comments.nvim",
+        event = "BufRead",
+        opts = {
+            signs = false,
+        },
+    },
+    {
+        "brenoprata10/nvim-highlight-colors",
+        cmd = "HighlightColors",
+        opts = {
+            render = "virtual",
+            virtual_symbol = '■',
+            virtual_symbol_prefix = " ",
+            virtual_symbol_suffix = "",
+            virtual_symbol_position = "inline",
+            enable_hex = true,
+            enable_short_hex = true,
+            enable_rgb = true,
+            enable_hsl = true,
+            enable_var_usage = true,
+            enable_named_colors = true,
+            enable_tailwind = true,
+            exclude_filetypes = {},
+            exclude_buftypes = {}
+        },
+    },
+    -- TODO: remove after getting comfortable
+    {
+        "m4xshen/hardtime.nvim",
+        event = "VeryLazy",
+        opts = {}
+    },
+    -- INFO: Dependencies
+    {
+        "nvim-lua/plenary.nvim",
+        lazy = true,
+    },
+    {
+        "MunifTanjim/nui.nvim",
+        lazy = true,
+    },
+};

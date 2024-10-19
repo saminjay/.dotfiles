@@ -2,7 +2,7 @@ return {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
     event = "BufRead",
-    config = function ()
+    config = function()
         require("nvim-treesitter.configs").setup({
             modules = {},
             ignore_install = {},
@@ -33,4 +33,4 @@ return {
             indent = { enable = true },
         })
     end
- }
+}

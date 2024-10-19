@@ -1,47 +1,8 @@
 return {
     {
-        -- `lazydev` configures Lua LSP for your Neovim config, runtime and plugins
-        'folke/lazydev.nvim',
-        ft = 'lua',
-        opts = {
-            library = {
-                -- Load luvit types when the `vim.uv` word is found
-                { path = 'luvit-meta/library', words = { 'vim%.uv' } },
-            },
-        },
-        dependencies = {
-            { 'Bilal2453/luvit-meta' },
-        },
-    },
-    {
         -- Main LSP Configuration
         'neovim/nvim-lspconfig',
-        event = "BufRead",
-        dependencies = {
-            -- Automatically install LSPs and related tools to stdpath for Neovim
-            {
-                'williamboman/mason.nvim',
-                opts = {
-                    ui = {
-                        border = "rounded",
-                        icons = {
-                            package_installed = "✓",
-                            package_pending = "➜",
-                            package_uninstalled = "✗"
-                        },
-                    },
-                },
-            },
-            'williamboman/mason-lspconfig.nvim',
-            'WhoIsSethDaniel/mason-tool-installer.nvim',
-
-            -- Status updates for LSP
-            -- FIX: not working properly, test and fix
-            { 'j-hui/fidget.nvim', opts = {} },
-
-            -- Allows extra capabilities provided by nvim-cmp
-            'hrsh7th/cmp-nvim-lsp',
-        },
+        event = "BufReadPre",
         config = function()
             -- INFO: LSP keymaps
             vim.api.nvim_create_autocmd('LspAttach', {
@@ -142,5 +103,33 @@ return {
                 border = _border
             }
         end,
+    },
+    -- INFO: Dependencies
+    {
+        'williamboman/mason.nvim',
+        lazy = true,
+        opts = {
+            ui = {
+                border = "rounded",
+                icons = {
+                    package_installed = "✓",
+                    package_pending = "➜",
+                    package_uninstalled = "✗"
+                },
+            },
+        },
+    },
+    {
+        'williamboman/mason-lspconfig.nvim',
+        lazy = true,
+    },
+    {
+        'WhoIsSethDaniel/mason-tool-installer.nvim',
+        lazy = true,
+    },
+    {
+        -- Allows extra capabilities provided by nvim-cmp
+        'hrsh7th/cmp-nvim-lsp',
+        lazy = true,
     },
 }
