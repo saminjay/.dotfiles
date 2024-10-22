@@ -2,6 +2,7 @@ return {
     {
         'nvim-telescope/telescope.nvim',
         tag = '0.1.8',
+        cmd = "Telescope",
         keys = {
             { "<leader>pf", ":Telescope find_files<CR>", desc = "[p]roject [f]iles" },
             { "<C-p>",      ":Telescope git_files<CR>",  desc = "git files vscode mapping" },
@@ -37,9 +38,5 @@ return {
                 },
             },
         },
-    },
-    {
-        'nvim-lua/plenary.nvim',
-        lazy = true,
     },
 };

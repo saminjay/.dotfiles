@@ -1,4 +1,3 @@
---  rose-pine CONFIG
 local rose_pine = {
     "rose-pine/neovim",
     name = "rose-pine",
@@ -8,6 +7,7 @@ local rose_pine = {
         require("rose-pine").setup({
             enable = {
                 terminal = true,
+                legacy_highlights = true,
             },
             styles = {
                 bold = true,
@@ -20,10 +20,9 @@ local rose_pine = {
     end,
 }
 
-
 local lualine = {
     'nvim-lualine/lualine.nvim',
-    event = "ColorScheme",
+    event = "VeryLazy",
     config = function()
         local custom_rose_pine = require("lualine.themes.rose-pine")
         custom_rose_pine.insert.c.bg = "None"
@@ -63,17 +62,32 @@ local lualine = {
     end
 }
 
+local fidget = {
+    'j-hui/fidget.nvim',
+    event = "VeryLazy",
+    opts = {
+        notification = {
+            poll_rate = 10,                   -- How frequently to update and render notifications
+            filter = vim.log.levels.INFO,     -- Minimum notifications level
+            override_vim_notify = true,       -- Automatically override vim.notify() with Fidget
+
+            -- Options related to the notification window and buffer
+            window = {
+                normal_hl = "Comment",     -- Base highlight group in the notification window
+                winblend = 0,              -- Background color opacity in the notification window
+                border = "rounded",        -- Border around the notification window
+                zindex = 45,               -- Stacking priority of the notification window
+                x_padding = 1,             -- Padding from right edge of window boundary
+                y_padding = 1,             -- Padding from bottom edge of window boundary
+                align = "bottom",          -- How to align the notification window
+                relative = "editor",       -- What the notification window position is relative to
+            },
+        },
+    },
+}
+
 return {
-    -- tokyo_night,
     rose_pine,
     lualine,
-    -- Status updates for LSP
-    -- FIX: not working properly, test and fix
-    { 'j-hui/fidget.nvim', opts = {} },
-
-    -- INFO: Dependencies
-    {
-        'nvim-tree/nvim-web-devicons',
-        lazy = true,
-    },
+    fidget,
 }

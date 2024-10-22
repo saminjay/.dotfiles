@@ -1,10 +1,14 @@
+-- setup leaders before
 vim.g.mapleader = " "
+vim.g.maplocalleader = "\\"
+vim.keymap.set({ "n", "x", "o" }, "<leader>", "<nop>")
+vim.keymap.set({ "n", "x", "o" }, "<localleader>", "<nop>")
 
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 
 -- move selected lines up and down (":m" is move command)
-vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
-vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+vim.keymap.set("x", "J", ":m '>+1<CR>gv=gv")
+vim.keymap.set("x", "K", ":m '<-2<CR>gv=gv")
 
 -- "J" appends the next line with a space. This keeps the cursor at the current position
 vim.keymap.set("n", "J", "mzJ`z")
@@ -20,15 +24,12 @@ vim.keymap.set({ "n", "x" }, "<leader>P", [["+P]])
 
 -- next greatest remap ever : asbjornHaland
 -- yanks to the + register/clipboard
-vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
+vim.keymap.set({ "n", "x" }, "<leader>y", [["+y]])
 vim.keymap.set("n", "<leader>Y", [["+y$]]) -- 'Y' is remapped to 'y$' in nvim
 
 -- deletes to the void register
-vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
+vim.keymap.set({ "n", "x" }, "<leader>d", [["_d]])
 vim.keymap.set("n", "<leader>D", [["_D]])
-
--- TEST: check and test
--- vim.keymap.set("n", "Q", "<nop>")
 
 -- TODO: Write a tmux-sessionizer
 -- vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")

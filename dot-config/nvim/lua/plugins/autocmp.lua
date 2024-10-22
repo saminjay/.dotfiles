@@ -21,11 +21,11 @@ return {
                     ["<C-y>"] = cmp.mapping.complete(),
                 },
                 sources = cmp.config.sources({
-                    { name = "nvim_lsp" },
                     {
                         name = "lazydev",
                         group_index = 0, -- Use first
                     },
+                    { name = "nvim_lsp" },
                     { name = "path" },
                     { name = 'nvim_lsp_signature_help' },
                 }, {
