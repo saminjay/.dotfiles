@@ -10,6 +10,7 @@ return {
             { "<leader>pb", ":Telescope buffers<CR>",    desc = "[p]roject [b]uffers" },
             { "<leader>h",  ":Telescope help_tags<CR>",  desc = "[h]elp" },
             { "<leader>ts", ":Telescope treesitter<CR>", desc = "[t]ree[s]itter" },
+            { "<leader>tb", ":Telescope builtin<CR>", desc = "[t]elescope [b]uiltin pickers" },
         },
         opts = {
             defaults = {
