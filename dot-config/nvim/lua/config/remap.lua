@@ -6,10 +6,6 @@ vim.keymap.set({ "n", "x", "o" }, "<localleader>", "<nop>")
 
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 
--- move selected lines up and down (":m" is move command)
-vim.keymap.set("x", "J", ":m '>+1<CR>gv=gv")
-vim.keymap.set("x", "K", ":m '<-2<CR>gv=gv")
-
 -- "J" appends the next line with a space. This keeps the cursor at the current position
 vim.keymap.set("n", "J", "mzJ`z")
 
@@ -50,3 +46,33 @@ vim.keymap.set("n", "<leader>vpp", "<cmd>e ~/.config/nvim/lua/config/lazy.lua<CR
 vim.keymap.set("n", "<leader>TS", function()
     vim.treesitter.inspect_tree({ command = "40vnew" })
 end)
+
+-- TODO:
+-- Make these local function and pass the functions directly to set()
+function MoveLineDown()
+    local ok = pcall(
+        vim.api.nvim_exec2,
+        string.format([['<,'>m '>+%d]], vim.v.count1),
+        {}
+    )
+    vim.cmd([[normal! gv=gv]])
+    if not ok then
+        vim.notify("On the last line of the file")
+    end
+end
+
+function MoveLineUp()
+    local ok = pcall(
+        vim.api.nvim_exec2,
+        string.format([['<,'>m '<-%d]], vim.v.count1 + 1),
+        {}
+    )
+    vim.cmd([[normal! gv=gv]])
+    if not ok then
+        vim.notify("On the first line of the file")
+    end
+end
+
+-- move selected lines up and down
+vim.keymap.set("x", "J", ":<C-U>lua MoveLineDown()<CR>", { silent = true })
+vim.keymap.set("x", "K", ":<C-U>lua MoveLineUp()<CR>", { silent = true })
