@@ -32,7 +32,11 @@ local function get_mark(buf, lnum)
     local marks = vim.fn.getmarklist(buf)
     vim.list_extend(marks, vim.fn.getmarklist())
     for _, mark in ipairs(marks) do
-        if mark.pos[1] == buf and mark.pos[2] == lnum and mark.mark:match("[a-zA-Z]") then
+        if
+            mark.pos[1] == buf
+            and mark.pos[2] == lnum
+            and mark.mark:match("[a-zA-Z]")
+        then
             return { text = mark.mark:sub(2), texthl = "DiagnosticHint" }
         end
     end
@@ -61,7 +65,10 @@ local function statuscolumn()
         -- @type Sign?,Sign?,Sign?
         local left, right, fold
         for _, s in ipairs(signs) do
-            if s.name and (s.name:find("GitSign") or s.name:find("MiniDiffSign")) then
+            if
+                s.name
+                and (s.name:find("GitSign") or s.name:find("MiniDiffSign"))
+            then
                 right = s
             else
                 left = s
@@ -88,10 +95,11 @@ local function statuscolumn()
     local is_relnum = vim.wo[win].relativenumber
     if (is_num or is_relnum) and vim.v.virtnum == 0 then
         if vim.fn.has("nvim-0.11") == 1 then
-            components[2] = "%l" -- 0.11 handles both the current and other lines with %l
+            -- 0.11 handles both the current and other lines with %l
+            components[2] = "%l"
         else
             if vim.v.relnum == 0 then
-                components[2] = is_num and "%l " or "%r" -- the current line
+                components[2] = is_num and "%l " or "%r"    -- the current line
             else
                 components[2] = is_relnum and "%r" or "%l " -- other lines
             end
