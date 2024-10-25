@@ -25,11 +25,22 @@ vim.opt.expandtab = true
 vim.opt.smartindent = true
 
 vim.opt.wrap = false
+vim.opt.sidescroll = 1
+vim.opt.sidescrolloff = 4
+
+vim.opt.list = true
+vim.opt.listchars = {
+    nbsp = "󱁐",
+    trail = "",
+    precedes = "◀",
+    extends = "▶",
+    tab = "│",
+    leadmultispace = "│   ",
+}
 
 -- no backup but store undos
 vim.opt.swapfile = false
 vim.opt.backup = false
-
 vim.opt.undofile = true
 
 vim.opt.hlsearch = true

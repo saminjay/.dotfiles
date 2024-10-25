@@ -14,6 +14,9 @@ local rose_pine = {
                 italic = true,
                 transparency = true,
             },
+            highlight_groups = {
+                Whitespace = { fg = "overlay" },
+            },
         })
         -- load the colorscheme here
         vim.cmd.colorscheme("rose-pine-moon")
