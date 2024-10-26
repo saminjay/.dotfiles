@@ -7,17 +7,17 @@ alias ls="ls -F --color"
 alias lsa="ls -A"
 alias lsl="ls -lAh"
 alias grep="grep --color=always"
-alias td="nvim ~/.personal/TODO.md"
 alias v="nvim"
+alias td="v ~/.personal/TODO.md"
 
 # frequent dirs
 alias personal="cd ~/.personal"
 alias private="cd ~/.private"
-alias work="cd ~/.work"
 alias config="cd ~/.config"
-alias dotfiles="cd ~/.dotfiles"
-alias projects="cd ~/Projects"
-alias scripts="cd ~/.local/scripts"
+alias scripts="cd ~/Projects/personal/dotfiles/dot-local/scripts"
+alias dotfiles="cd ~/Projects/personal/dotfiles"
+alias projects="cd ~/Projects/personal"
+alias work="cd ~/Projects/work"
 
 # cd ups
 alias .1="cd .."
