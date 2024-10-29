@@ -1,3 +1,13 @@
+@define-color tokyonight-bg #1a1b26;
+@define-color tokyonight-border #565f89;
+@define-color tokyonight-active-bg #414868;
+@define-color tokyonight-text #c0caf5;
+@define-color tokyonight-muted #a9b1d6;
+@define-color tokyonight-critical-bg #f7768e;
+@define-color tokyonight-battery-charging #73daca;
+@define-color tokyonight-battery-warning #e0af68;
+@define-color tokyonight-highlight #7dcfff;
+
 * {
     border: none;
     border-radius: 20px;
@@ -17,25 +27,29 @@ window#waybar.hidden {
 #custom-launcher {
     font-size: 28px;
     margin-right: 8px;
-    color: #1793d1;
+    color: @tokyonight-highlight;
+    text-shadow:
+        1px 1px 2px rgba(37, 37, 45, 0.7);
+        /*-1px -1px 2px rgba(37, 37, 45, 0.7); */
 }
 
 #workspaces {
     margin-left: 8px;
     border-radius: 20px;
     transition: none;
-    background: #383c4a;
+    background: @tokyonight-bg;
+    border: 1px solid @tokyonight-border;  /* Added border */
 }
 
 #workspaces button {
     transition: none;
-    color: #7c818c;
+    color: @tokyonight-muted;
     background: transparent;
     font-size: 18px;
 }
 
 #workspaces button.persistent {
-    color: #7c818c;
+    color: @tokyonight-muted;
     font-size: 12px;
 }
 
@@ -45,14 +59,13 @@ window#waybar.hidden {
     box-shadow: inherit;
     text-shadow: inherit;
     border-radius: inherit;
-    color: #383c4a;
-    background: #7c818c;
+    color: @tokyonight-bg;
+    background: @tokyonight-muted;
 }
 
 #workspaces button.active {
-    background: #4e5263;
-    color: white;
-    border-radius: 20px;
+    background: @tokyonight-active-bg;
+    color: @tokyonight-text;
 }
 
 .modules-center {
@@ -60,8 +73,9 @@ window#waybar.hidden {
     padding-right: 16px;
     border-radius: 20px;
     transition: none;
-    color: #ffffff;
-    background: #383c4a;
+    color: @tokyonight-text;
+    background: @tokyonight-bg;
+    border: 1px solid @tokyonight-border;  /* Added border */
 }
 
 #custom-notif {
@@ -71,10 +85,10 @@ window#waybar.hidden {
 .modules-right {
     border-radius: 20px;
     transition: none;
-    color: #ffffff;
-    background: #383c4a;
+    color: @tokyonight-text;
+    background: @tokyonight-bg;
+    border: 1px solid @tokyonight-border;  /* Added border */
 }
-
 
 #pulseaudio {
     padding-left: 16px;
@@ -84,8 +98,8 @@ window#waybar.hidden {
 
 #pulseaudio.muted,
 #pulseaudio.source-muted {
-    background-color: #90b1b1;
-    color: #2a5c45;
+    background-color: @tokyonight-muted;
+    color: @tokyonight-bg ;
 }
 
 #custom-mem {
@@ -107,7 +121,8 @@ window#waybar.hidden {
 }
 
 #temperature.critical {
-    background-color: #eb4d4b;
+    color: @tokyonight-bg;
+    background-color: @tokyonight-critical-bg;
 }
 
 #backlight {
@@ -123,18 +138,18 @@ window#waybar.hidden {
 }
 
 #battery.charging {
-    color: #ffffff;
-    background-color: #26A65B;
+    color: @tokyonight-bg;
+    background-color: @tokyonight-battery-charging;
 }
 
 #battery.warning:not(.charging) {
-    background-color: #ffbe61;
+    background-color: @tokyonight-battery-warning;
     color: black;
 }
 
 #battery.critical:not(.charging) {
-    background-color: #f53c3c;
-    color: #ffffff;
+    background-color: @tokyonight-critical-bg;
+    color: @tokyonight-text;
     animation-name: blink;
     animation-duration: 0.5s;
     animation-timing-function: linear;
@@ -147,13 +162,13 @@ window#waybar.hidden {
     padding-right: 16px;
     border-radius: 20px;
     transition: none;
-    color: #ffffff;
-    background: #383c4a;
+    color: @tokyonight-text;
+    background: @tokyonight-bg;
 }
 
 @keyframes blink {
     to {
-        background-color: #ffffff;
-        color: #000000;
+        background-color: @tokyonight-text;
+        color: @tokyonight-bg;
     }
 }
