@@ -7,7 +7,6 @@ alias ls="ls -F --color"
 alias lsa="ls -A"
 alias lsl="ls -lAh"
 alias grep="grep --color=always"
-alias v="nvim"
 alias td="v ~/.personal/TODO.md"
 
 # frequent dirs
@@ -30,6 +29,15 @@ alias .6="cd ../../../../../.."
 ################################################################################
 #                   FUNCTIONS                                                  #
 ################################################################################
+
+# NeoVim alias function, if no arguements open directory view
+function v() {
+    if [ -z $1 ]; then
+        nvim .
+    else
+        nvim $@
+    fi
+}
 
 # mkcd function
 function mkcd() {

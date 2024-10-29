@@ -34,7 +34,7 @@ vim.opt.listchars = {
     trail = "",
     precedes = "◀",
     extends = "▶",
-    tab = "│",
+    tab = "│󱦰",
     leadmultispace = "│   ",
 }
 
@@ -65,7 +65,7 @@ vim.opt.showmode = false
 vim.opt.fillchars = { fold = " " }
 vim.opt.foldtext = ""
 vim.opt.foldenable = true
-vim.opt.foldlevel = 99
+vim.opt.foldlevel = 2
 vim.opt.foldmethod = 'expr'
 vim.opt.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
 vim.g.markdown_folding = 1 -- enable markdown folding
