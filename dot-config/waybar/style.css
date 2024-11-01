@@ -7,6 +7,7 @@
 @define-color tokyonight-battery-charging #73daca;
 @define-color tokyonight-battery-warning #e0af68;
 @define-color tokyonight-highlight #7dcfff;
+@define-color arch-linux-color #1793d1;
 
 * {
     border: none;
@@ -27,10 +28,10 @@ window#waybar.hidden {
 #custom-launcher {
     font-size: 28px;
     margin-right: 8px;
-    color: @tokyonight-highlight;
+    color: @arch-linux-color;
     text-shadow:
         1px 1px 2px rgba(37, 37, 45, 0.7);
-        /*-1px -1px 2px rgba(37, 37, 45, 0.7); */
+    /*-1px -1px 2px rgba(37, 37, 45, 0.7); */
 }
 
 #workspaces {
@@ -38,7 +39,7 @@ window#waybar.hidden {
     border-radius: 20px;
     transition: none;
     background: @tokyonight-bg;
-    border: 1px solid @tokyonight-border;  /* Added border */
+    border: 1px solid @tokyonight-border;
 }
 
 #workspaces button {
@@ -75,7 +76,8 @@ window#waybar.hidden {
     transition: none;
     color: @tokyonight-text;
     background: @tokyonight-bg;
-    border: 1px solid @tokyonight-border;  /* Added border */
+    border: 1px solid @tokyonight-border;
+    /* Added border */
 }
 
 #custom-notif {
@@ -87,7 +89,8 @@ window#waybar.hidden {
     transition: none;
     color: @tokyonight-text;
     background: @tokyonight-bg;
-    border: 1px solid @tokyonight-border;  /* Added border */
+    border: 1px solid @tokyonight-border;
+    /* Added border */
 }
 
 #pulseaudio {
@@ -164,6 +167,19 @@ window#waybar.hidden {
     transition: none;
     color: @tokyonight-text;
     background: @tokyonight-bg;
+}
+
+menu {
+    background: @tokyonight-bg;
+}
+
+menuitem {
+    border-radius: 16px;
+    color: @tokyonight-text;
+}
+
+menuitem:hover {
+    background: @tokyonight-active-bg;
 }
 
 @keyframes blink {
