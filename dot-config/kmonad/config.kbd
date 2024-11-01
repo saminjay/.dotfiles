@@ -1,0 +1,35 @@
+#| ----------------------------------------------------------------------------
+        IDK
+---------------------------------------------------------------------------- |#
+
+(defcfg
+  input  (device-file "/dev/input/by-id/usb-SINO_WEALTH_Gaming_KB-event-kbd")
+  output (uinput-sink "My KMonad output")
+  fallthrough true
+  allow-cmd false
+
+  ;; Set the implicit around to `around`
+  implicit-around around
+)
+
+(defsrc
+    caps    a   s   d   f
+            j   k   l   ;
+)
+
+(defalias
+  c-esc  (tap-hold-next-release 300 esc lctl)
+  met-a  (tap-hold-next-release 300 a lmet)
+  alt-s  (tap-hold-next-release 300 s lalt)
+  sft-d  (tap-hold-next-release 300 d lsft)
+  ctl-f  (tap-hold-next-release 300 f lctl)
+  met-sc (tap-hold-next-release 300 ; rmet)
+  alt-l  (tap-hold-next-release 300 l ralt)
+  sft-k  (tap-hold-next-release 300 k rsft)
+  ctl-j  (tap-hold-next-release 300 j rctl)
+)
+
+(deflayer home-row-mod
+    @c-esc  @met-a   @alt-s   @sft-d   @ctl-f
+            @ctl-j   @sft-k   @alt-l   @met-sc
+)
