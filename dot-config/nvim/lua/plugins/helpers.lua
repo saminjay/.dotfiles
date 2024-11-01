@@ -1,23 +1,3 @@
--- FIXIT: doesn't open properly in files
-local which_key = {
-    "folke/which-key.nvim",
-    event = "VeryLazy",
-    opts = {
-        triggers = {
-            { "<leader>?", mode = "nixsotc" }
-        }
-    },
-    keys = {
-        {
-            "<leader>?",
-            function()
-                require("which-key").show({ global = false })
-            end,
-            desc = "Buffer Local Keymaps (which-key)",
-        },
-    },
-}
-
 return {
     {
         "folke/todo-comments.nvim",
@@ -46,12 +26,12 @@ return {
             exclude_buftypes = {}
         },
     },
-    -- TODO: remove after getting comfortable
-    {
-        "m4xshen/hardtime.nvim",
-        event = "VeryLazy",
-        opts = {}
-    },
+    -- INFO: removed after getting comfortable
+    -- {
+    --     "m4xshen/hardtime.nvim",
+    --     event = "VeryLazy",
+    --     opts = {}
+    -- },
     -- INFO: Dependencies
     {
         "MunifTanjim/nui.nvim",
