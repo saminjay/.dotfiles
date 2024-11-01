@@ -15,8 +15,9 @@ function usage() {
     echo "--quiet, -q           don't show notifications"
     echo ""
     echo "-k, --kill            kill all the instances of this script and exit"
-    echo "                      Note: a successfull run will also kill all the previous instances"
-    echo "                            should not be matched with other options"
+    echo "                      Note: a successfull run will also kill all"
+    echo "                            the previous instances, should not be"
+    echo "                            matched with other options"
     echo ""
     echo "-h, -?, --help        show this message than exit"
 }

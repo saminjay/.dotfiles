@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # install all required packages
 sudo pacman -S - < packages.txt
