@@ -3,10 +3,10 @@
 ################################################################################
 
 # handy cmds
-alias ls="ls -F --color"
+alias ls="ls -F --color=auto"
 alias lsa="ls -A"
 alias lsl="ls -lAh"
-alias grep="grep --color=always"
+alias grep="grep --color=auto"
 alias td="v ~/.personal/TODO.md"
 
 # frequent dirs
@@ -32,7 +32,9 @@ alias .6="cd ../../../../../.."
 
 # NeoVim alias function, if no arguements open directory view
 function v() {
-    if [ -z $1 ]; then
+    if [[ -p /dev/stdin ]]; then
+        cat /dev/stdin | nvim $@
+    elif [ -z $1 ]; then
         nvim .
     else
         nvim $@

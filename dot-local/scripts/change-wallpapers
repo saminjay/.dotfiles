@@ -1,8 +1,5 @@
 #!/usr/bin/env bash
 
-# Wallpaper directory
-wallpapers_dir="${HOME}/.wallpapers"
-
 function kill_prev() {
     # pgrep returns pid
     # BASH_SOURCE returns current script name
@@ -62,6 +59,7 @@ function change_wallpaper() {
 }
 
 function main() {
+    local wallpapers_dir="${HOME}/.wallpapers"
     local group=
     validate_input $@
     kill_prev

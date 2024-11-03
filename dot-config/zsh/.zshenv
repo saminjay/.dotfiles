@@ -27,6 +27,10 @@ export HISTSIZE=5000
 export SAVEHIST=5000
 export HISTORY_IGNORE="(ls|cd|pwd|exit|cd ..|lsa|lsl|htop|btop|td)"
 
+# fzf shell integration options
+export FZF_DEFAULT_OPTS='--tmux center'
+export FZF_COMPLETION_TRIGGER='~~'
+
 ################################################################################
 #               Forcing XDG_BASE_DIRS                                          #
 ################################################################################

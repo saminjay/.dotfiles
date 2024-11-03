@@ -1,12 +1,15 @@
 #!/usr/bin/env bash
 
-config_files="$HOME/.config/waybar"
+function main () {
+    local config_files="$HOME/.config/waybar"
 
-trap "killall waybar" EXIT
+    trap "killall waybar" EXIT
 
-while true; do
-    waybar & disown
-    inotifywait -e create,modify,delete $config_files
-    killall waybar
-done
+    while true; do
+        waybar & disown
+        inotifywait -e create,modify,delete $config_files
+        killall waybar
+    done
+}
 
+main
