@@ -3,7 +3,6 @@ return {
         "nvim-treesitter/nvim-treesitter-textobjects",
         event = "BufReadPre",
         config = function()
-            vim.treesitter.language.register("commonlisp", "kbd")
             require('nvim-treesitter.configs').setup({
                 -- Add languages to be installed here that you want installed for treesitter
                 modules = {},
