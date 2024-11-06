@@ -17,29 +17,39 @@
 )
 
 (defalias
-    num-es (tap-hold-next-release 300 esc (layer-toggle num-lyr))
-    met-a  (tap-hold-next-release 300 a   lmet)
-    alt-s  (tap-hold-next-release 300 s   lalt)
-    sft-d  (tap-hold-next-release 300 d   lsft)
-    ctl-f  (tap-hold-next-release 300 f   lctl)
-    met-sc (tap-hold-next-release 300 ;   rmet)
-    alt-l  (tap-hold-next-release 300 l   ralt)
-    sft-k  (tap-hold-next-release 300 k   rsft)
-    ctl-j  (tap-hold-next-release 300 j   rctl)
+    num-es  (tap-hold-next-release 300 esc (layer-toggle num-lyr))
+    met-a   (tap-hold-next-release 300 a   lmet)
+    alt-s   (tap-hold-next-release 300 s   lalt)
+    sft-d   (tap-hold-next-release 300 d   lsft)
+    ctl-f   (tap-hold-next-release 300 f   lctl)
+    met-sc  (tap-hold-next-release 300 ;   rmet)
+    alt-l   (tap-hold-next-release 300 l   ralt)
+    sft-k   (tap-hold-next-release 300 k   rsft)
+    ctl-j   (tap-hold-next-release 300 j   rctl)
+    arrow   (layer-toggle arrow-lyr)
 )
 
 (deflayer main
-    _         _       _       _       _       _   _   _       _       _       _       _    _    _
-    _         _       _       _       _       _   _   _       _       _       _       _    _    _
-    @num-es   @met-a  @alt-s  @sft-d  @ctl-f  _   _   @ctl-j  @sft-k  @alt-l  @met-sc _    _
-    _         _       _       _       _       _   _   _       _       _       _       _
-    _         _       _                       _               _
+    _         _         _       _       _       _   _   _       _       _       _       _    _    _
+    _         _         _       _       _       _   _   _       _       _       _       _    _    _
+    @num-es   @met-a    @alt-s  @sft-d  @ctl-f  _   _   @ctl-j  @sft-k  @alt-l  @met-sc _    _
+    _         _         _       _       _       _   _   _       _       _       _       _
+    _         _         @arrow                  _               _
 )
 
 (deflayer num-lyr
-    _         _       _       _       _       _   _   _       _       _       _       _    _    _
-    grv       1       2       3       4       5   6   7       8       9       0       -    =    bspc
-    @num-es   @met-a  @alt-s @sft-d   @ctl-f  _   _   @ctl-j  @sft-k  @alt-l  @met-sc _    _
-    _         [       ]       {       }       _   \   |       _       _       _       _
-    _         _       _                       _               _
+    _         _         _       _       _       _   _   _       _       _       _       _    _    _
+    grv       1         2       3       4       5   6   7       8       9       0       -    =    bspc
+    @num-es   @met-a    @alt-s @sft-d   @ctl-f  _   _   @ctl-j  @sft-k  @alt-l  @met-sc _    _
+    _         [         ]       {       }       _   \   |       _       _       _       _
+    _         _         @arrow                  _               _
 )
+
+(deflayer arrow-lyr
+    _         _         _       _       _       _   _     _     _       _       _       _    _    _
+    _         _         _       _       _       _   _     _     _       _       _       _    _    _
+    _         _         _       _       _       _   left  down  up      rght    _       _    _
+    _         _         _       _       _       _   _     _     _       _       _       _
+    _         _         @arrow                  _               _
+)
+
