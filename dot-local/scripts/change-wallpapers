@@ -2,18 +2,21 @@
 
 function kill_prev() {
     # pgrep returns pid
-    # BASH_SOURCE returns current script name
+    # $0 returns current script name
     # $$ contains current pid (grep ignore so it doesn't suicide)
-    kill $(pgrep -f ${BASH_SOURCE[0]} | grep -v $$) >/dev/null 2>&1
+    kill $(pgrep -f "$0" | grep -v $$) >/dev/null 2>&1
 }
 
 function validate_input() {
-    cd ${wallpapers_dir}
     local IFS=$'/\n'
-    local opts=($(ls -1 -d */))
+    local opts
+    local fl
 
-    local fl=0
-    for i in ${opts[@]}
+    cd "${wallpapers_dir}" || exit
+    opts=( $(ls -1 -d */) )
+    fl=0
+
+    for i in "${opts[@]}"
     do
         if [ "$1" = "$i" ]; then
             fl=1
@@ -22,8 +25,9 @@ function validate_input() {
     done
 
     if [ $fl -eq 0 ]; then
-        echo -e "$1 not found\n"
-        echo -e "Available params:\n${opts[@]}"
+        echo "$1 not found"
+        echo "Available params:"
+        echo "${opts[@]}"
         exit 1
     fi
 }
@@ -39,18 +43,23 @@ function change_gnome_wallpaper() {
 }
 
 function change_wallpaper() {
-    # path to file
-    local ptf="$wallpapers_dir/$group"
+    local IFS=$'/\n'
+    local ptf
+    local wallpapers
+    local len
+    local idx
 
-    # getting all the wallpapers
-    local wallpapers=($(ls $ptf))
-    local len=${#wallpapers[@]}
+    ptf="$wallpapers_dir/$group"
+    wallpapers=( $(ls "$ptf") )
+
+    idx=0
+    len=${#wallpapers[@]}
 
     while true
     do
         sleep 1m
         # randomly choose a wallpaper
-        local idx=$((RANDOM % len))
+        idx=$((RANDOM % len))
 
         # actually setting the wallpaper
         # change_gnome_wallpaper "$ptf/${wallpapers[idx]}"
@@ -59,11 +68,12 @@ function change_wallpaper() {
 }
 
 function main() {
-    local wallpapers_dir="${HOME}/.wallpapers"
-    local group=
-    validate_input $@
+    local wallpapers_dir
+    local group
+    wallpapers_dir="${HOME}/.wallpapers"
+    validate_input "$@"
     kill_prev
     change_wallpaper & disown
 }
 
-main $@
+main "$@"

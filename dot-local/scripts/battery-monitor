@@ -26,7 +26,7 @@ function kill_prev() {
     # pgrep returns pid
     # $0 returns current script name
     # $$ contains current pid (grep ignore so it doesn't suicide)
-    kill $(pgrep -f $0 | grep -v $$) >/dev/null 2>&1
+    kill $(pgrep -f "$0" | grep -v $$) >/dev/null 2>&1
 }
 
 function validate_input() {
@@ -83,29 +83,34 @@ function notify() {
 }
 
 function get_plugged() {
-    local adapter_path=$(upower -e | grep line_power)
-    upower -i $adapter_path | grep -A2 'line-power' | grep online | awk '{ print $2 }'
+    local adapter_path
+    adapter_path=$(upower -e | grep line_power)
+    upower -i "$adapter_path" | grep -A2 "line-power" | grep online | awk "{ print \$2 }"
 }
 
 function get_percentage() {
-    local bat_path=$(upower -e | grep battery_BAT)
-    upower -i $bat_path | grep 'percentage:' | awk '{ print $2 }' | sed 's/%//'
+    local bat_path
+    bat_path=$(upower -e | grep battery_BAT)
+    upower -i "$bat_path" | grep "percentage:" | awk "{ print \$2 }" | sed "s/%//"
 }
 
 function monitor() {
+    local bat_percent
+    local i
+
     while true
     do
         sleep 10s
-        local bat_percent=$(get_percentage)
+        bat_percent=$(get_percentage)
 
-        if [[ $(get_plugged) == "yes" ]]; then
+        if [[ "$(get_plugged)" == "yes" ]]; then
             if [[ $bat_percent -ge $max ]]; then
                 $should_notify && notify "Battery reached $max%" "Unplug the power cable." >/dev/null 2>&1
                 ~/.local/python/ty-plug/ty-plug -s off
-                local i=0
-                while [ $(get_plugged) == "yes" ] && [ $i -lt 100 ];
+                i=0
+                while [ "$(get_plugged)" == "yes" ] && [ $i -lt 100 ];
                 do
-                    i=$i+1
+                    i=$((i+1))
                     sleep 0.1
                 done
                 $should_notify && kill -2 $!
@@ -115,9 +120,9 @@ function monitor() {
                 $should_notify && notify "Battery is below $min%" "Plug in the power cable." >/dev/null 2>&1
                 ~/.local/python/ty-plug/ty-plug -s on
                 local i=0
-                while [ $(get_plugged) == "no" ] && [ $i -lt 100 ];
+                while [ "$(get_plugged)" == "no" ] && [ $i -lt 100 ];
                 do
-                    i=$i+1
+                    i=$((i+1))
                     sleep 0.1
                 done
                 $should_notify && kill -2 $!
@@ -131,10 +136,9 @@ function main() {
     local max=70
     local should_notify=true
 
-    validate_input $@
+    validate_input "$@"
     kill_prev
     monitor & disown >/dev/null 2>&1
 }
 
-main $@
-
+main "$@"
