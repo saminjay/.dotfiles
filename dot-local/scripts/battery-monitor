@@ -23,42 +23,43 @@ function usage() {
 }
 
 function kill_prev() {
-    # pgrep returns pid
-    # $0 returns current script name
     # $$ contains current pid (grep ignore so it doesn't suicide)
-    kill $(pgrep -f "$0" | grep -v $$) >/dev/null 2>&1
+    # TODO: Find a better way, this also returns the pid of the subshell
+    local processes
+    readarray -t processes < <(pgrep -f "$0" | grep -v "$$")
+    kill "${processes[@]}" >/dev/null 2>&1
 }
 
 function validate_input() {
-    while :;
-    do
+    while :; do
         case $1 in
-            -h|-\?|--help)
-                usage
-                exit 0
-                ;;
-            -k|--kill)
-                kill_prev
-                echo "All processes killed"
-                exit 0
-                ;;
-            --min=?*)
-                min=${1#*=}
-                ;;
-            --max=?*)
-                max=${1#*=}
-                ;;
-            --quiet|-q)
-                should_notify=false
-                ;;
-            ?*)
-                echo "ERROR: $1 is in an invalid option. See usage"
-                usage
-                exit 1
-                ;;
-            *)
-                shift
-                break
+        -h | -\? | --help)
+            usage
+            exit 0
+            ;;
+        -k | --kill)
+            kill_prev
+            echo "All processes killed"
+            exit 0
+            ;;
+        --min=?*)
+            min=${1#*=}
+            ;;
+        --max=?*)
+            max=${1#*=}
+            ;;
+        --quiet | -q)
+            should_notify=false
+            ;;
+        ?*)
+            echo "ERROR: $1 is in an invalid option. See usage"
+            usage
+            exit 1
+            ;;
+        *)
+            shift
+            break
+            ;;
         esac
         shift
     done
@@ -98,35 +99,28 @@ function monitor() {
     local bat_percent
     local i
 
-    while true
-    do
+    while true; do
         sleep 10s
         bat_percent=$(get_percentage)
 
-        if [[ "$(get_plugged)" == "yes" ]]; then
-            if [[ $bat_percent -ge $max ]]; then
-                $should_notify && notify "Battery reached $max%" "Unplug the power cable." >/dev/null 2>&1
-                ~/.local/python/ty-plug/ty-plug -s off
-                i=0
-                while [ "$(get_plugged)" == "yes" ] && [ $i -lt 100 ];
-                do
-                    i=$((i+1))
-                    sleep 0.1
-                done
-                $should_notify && kill -2 $!
-            fi
-        else
-            if [[ $bat_percent -le $min ]]; then
-                $should_notify && notify "Battery is below $min%" "Plug in the power cable." >/dev/null 2>&1
-                ~/.local/python/ty-plug/ty-plug -s on
-                local i=0
-                while [ "$(get_plugged)" == "no" ] && [ $i -lt 100 ];
-                do
-                    i=$((i+1))
-                    sleep 0.1
-                done
-                $should_notify && kill -2 $!
-            fi
+        if [[ "$(get_plugged)" == "yes" ]] && [[ $bat_percent -ge $max ]]; then
+            $should_notify && notify "Battery reached $max%" "Unplug the power cable."
+            ~/.local/python/ty-plug/ty-plug -s off
+            i=0
+            while [ "$(get_plugged)" == "yes" ] && [ $i -lt 100 ]; do
+                i=$((i + 1))
+                sleep 0.1
+            done
+            $should_notify && kill -2 $!
+        elif [[ "$(get_plugged)" == "no" ]] && [[ $bat_percent -le $min ]]; then
+            $should_notify && notify "Battery is below $min%" "Plug in the power cable."
+            ~/.local/python/ty-plug/ty-plug -s on
+            local i=0
+            while [ "$(get_plugged)" == "no" ] && [ $i -lt 100 ]; do
+                i=$((i + 1))
+                sleep 0.1
+            done
+            $should_notify && kill -2 $!
         fi
     done
 }
@@ -138,7 +132,8 @@ function main() {
 
     validate_input "$@"
     kill_prev
-    monitor & disown >/dev/null 2>&1
+    monitor >/dev/null 2>&1 &
+    disown
 }
 
 main "$@"

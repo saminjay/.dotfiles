@@ -1,23 +1,23 @@
 #!/usr/bin/env bash
 
 function kill_prev() {
-    # pgrep returns pid
-    # $0 returns current script name
     # $$ contains current pid (grep ignore so it doesn't suicide)
-    kill $(pgrep -f "$0" | grep -v $$) >/dev/null 2>&1
+    # TODO: Find a better way, this also returns the pid of the subshell
+    local processes
+    readarray -t processes < <(pgrep -f "$0" | grep -v "$$")
+    kill "${processes[@]}" >/dev/null 2>&1
 }
 
 function validate_input() {
-    local IFS=$'/\n'
     local opts
     local fl
 
     cd "${wallpapers_dir}" || exit
-    opts=( $(ls -1 -d -- */) )
+    # shellcheck disable=SC2012
+    readarray -t opts < <(ls -1 -d -- */ | sed "s/\///")
     fl=0
 
-    for i in "${opts[@]}"
-    do
+    for i in "${opts[@]}"; do
         if [ "$1" = "$i" ]; then
             fl=1
             group=$1
@@ -33,9 +33,9 @@ function validate_input() {
 }
 
 function change_hyprpaper() {
-    eval hyprctl hyprpaper unload all >/dev/null 2>&1
-    eval hyprctl hyprpaper preload "$1" >/dev/null 2>&1
-    eval hyprctl hyprpaper wallpaper ",$1" >/dev/null 2>&1
+    eval hyprctl hyprpaper unload all
+    eval hyprctl hyprpaper preload "$1"
+    eval hyprctl hyprpaper wallpaper ",$1"
 }
 
 function change_gnome_wallpaper() {
@@ -43,20 +43,18 @@ function change_gnome_wallpaper() {
 }
 
 function change_wallpaper() {
-    local IFS=$'/\n'
     local ptf
     local wallpapers
     local len
     local idx
 
     ptf="$wallpapers_dir/$group"
-    wallpapers=( $(ls "$ptf") )
+    readarray -t wallpapers < <(ls -1 "$ptf")
 
     idx=0
     len=${#wallpapers[@]}
 
-    while true
-    do
+    while true; do
         sleep 1m
         # randomly choose a wallpaper
         idx=$((RANDOM % len))
@@ -73,7 +71,8 @@ function main() {
     wallpapers_dir="${HOME}/.wallpapers"
     validate_input "$@"
     kill_prev
-    change_wallpaper & disown
+    change_wallpaper >/dev/null 2>&1 &
+    disown
 }
 
 main "$@"
