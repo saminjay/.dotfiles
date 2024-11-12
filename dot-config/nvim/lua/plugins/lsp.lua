@@ -1,12 +1,12 @@
 return {
     {
         -- Main LSP Configuration
-        'neovim/nvim-lspconfig',
+        "neovim/nvim-lspconfig",
         event = "BufReadPre",
         config = function()
             -- INFO: LSP keymaps
-            vim.api.nvim_create_autocmd('LspAttach', {
-                group = vim.api.nvim_create_augroup('lsp-attach', { clear = true }),
+            vim.api.nvim_create_autocmd("LspAttach", {
+                group = vim.api.nvim_create_augroup("lsp-attach", { clear = true }),
                 callback = function(e)
                     local opts = { buffer = e.buf }
                     vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
@@ -47,13 +47,15 @@ return {
                 pyright = {},
                 taplo = {
                     -- IMPORTANT: this is required for taplo LSP to work in non-git repositories
-                    root_dir = require('lspconfig.util').root_pattern('*.toml', '.git'),
+                    root_dir = require("lspconfig.util").root_pattern("*.toml", ".git"),
                 },
                 lemminx = {},
+                eslint = {},
+                tailwindcss = {},
             }
 
             local ensure_installed = vim.tbl_keys(servers)
-            require('mason-tool-installer').setup({ ensure_installed = ensure_installed })
+            require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
             require("mason-lspconfig").setup({
                 handlers = {
@@ -62,10 +64,10 @@ return {
                         -- This handles overriding only values explicitly passed
                         -- by the server configuration above. Useful when disabling
                         -- certain features of an LSP (for example, turning off formatting for tsserver)
-                        server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
-                        require('lspconfig')[server_name].setup(server)
+                        server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
+                        require("lspconfig")[server_name].setup(server)
                     end,
-                }
+                },
             })
 
             -- INFO: Diagnostics
@@ -84,30 +86,26 @@ return {
             -- Borders
             local _border = "rounded"
 
-            vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
-                vim.lsp.handlers.hover, {
-                    border = _border
-                }
-            )
+            vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+                border = _border,
+            })
 
-            vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
-                vim.lsp.handlers.signature_help, {
-                    border = _border
-                }
-            )
+            vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
+                border = _border,
+            })
 
-            vim.diagnostic.config {
-                float = { border = _border }
-            }
+            vim.diagnostic.config({
+                float = { border = _border },
+            })
 
-            require('lspconfig.ui.windows').default_options = {
-                border = _border
+            require("lspconfig.ui.windows").default_options = {
+                border = _border,
             }
         end,
     },
     -- INFO: Dependencies
     {
-        'williamboman/mason.nvim',
+        "williamboman/mason.nvim",
         lazy = true,
         opts = {
             ui = {
@@ -115,22 +113,22 @@ return {
                 icons = {
                     package_installed = "✓",
                     package_pending = "➜",
-                    package_uninstalled = "✗"
+                    package_uninstalled = "✗",
                 },
             },
         },
     },
     {
-        'williamboman/mason-lspconfig.nvim',
+        "williamboman/mason-lspconfig.nvim",
         lazy = true,
     },
     {
-        'WhoIsSethDaniel/mason-tool-installer.nvim',
+        "WhoIsSethDaniel/mason-tool-installer.nvim",
         lazy = true,
     },
     {
         -- Allows extra capabilities provided by nvim-cmp
-        'hrsh7th/cmp-nvim-lsp',
+        "hrsh7th/cmp-nvim-lsp",
         lazy = true,
     },
 }
