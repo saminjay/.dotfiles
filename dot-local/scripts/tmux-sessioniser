@@ -1,44 +1,46 @@
 #!/usr/bin/env bash
 
-function select_dir() {
+function select-dir() {
     local dirs=(
         "$HOME/Projects/work"
         "$HOME/Projects/personal"
     )
 
-    if [[ $# -eq 1 ]]; then
+    if [[ $# -eq 0 ]]; then
+        selected=$(find "${dirs[@]}" -mindepth 1 -maxdepth 2 -type d | fzf)
+        echo "$selected"
+    elif [[ $# -eq 1 ]]; then
         selected=$1
     else
-        selected=$(find "${dirs[@]}" -mindepth 1 -maxdepth 1 -type d | fzf)
-        echo "$selected"
+        echo "Invalid number of arguements"
+        exit 1
     fi
 
     if [[ -z $selected ]]; then
-        echo "not selected anything"
-        exit 0
+        echo "Must select a directory"
+        exit 1
     fi
 }
 
-function open_tmux() {
-    selected_name=$(basename "$selected" | tr . _)
-
-    if [[ -z $TMUX ]]; then
-        tmux new-session -As "$selected_name" -c "$selected"
-        exit 0
-    fi
+function open-tmux() {
+    selected_name=$(basename "$selected" | tr .: _)
 
     if ! tmux has-session -t="$selected_name" 2>/dev/null; then
         tmux new-session -ds "$selected_name" -c "$selected"
     fi
 
-    tmux switch-client -t "$selected_name"
+    if [[ -z $TMUX ]]; then
+        tmux attach-session -t "$selected_name"
+    else
+        tmux switch-client -t "$selected_name"
+    fi
 }
 
 function main() {
     local selected
     local selected_name
-    select_dir "$@"
-    open_tmux
+    select-dir "$@"
+    open-tmux
 }
 
 main "$@"

@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+
+function validate() {
+    if [[ -z $TMUX ]]; then
+        echo "Run from a tmux session"
+        exit 1
+    fi
+}
+
+function open-windows() {
+    local dirs
+    readarray -t dirs < <(find "$1" -mindepth 1 -maxdepth 1 -type d |
+        grep -v ".git")
+    for d in "${dirs[@]}"; do
+        local name
+        name=$(basename "$d" | tr .: _)
+        tmux neww -n "$name" -c "$d"
+    done
+}
+
+function main() {
+    validate
+    open-windows "$1"
+}
+
+main "$@"
