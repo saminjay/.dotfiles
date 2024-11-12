@@ -1,9 +1,9 @@
 \.git
 \.gitignore
 \.gitmodules
+\.stowrc
+\.editorconfig
 install.sh
 packages.txt
 README.md
-\.stowrc
 Session.vim
-

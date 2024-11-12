@@ -14,7 +14,9 @@ function validate_input() {
 
     cd "${wallpapers_dir}" || exit
     # shellcheck disable=SC2012
-    readarray -t opts < <(ls -1 -d -- */ | sed "s/\///")
+    readarray -t opts < <(find . -mindepth 1 -maxdepth 1 -type d |
+        sed "s/\.\///" |
+        grep -v ".git")
     fl=0
 
     for i in "${opts[@]}"; do
@@ -43,13 +45,11 @@ function change_gnome_wallpaper() {
 }
 
 function change_wallpaper() {
-    local ptf
     local wallpapers
     local len
     local idx
 
-    ptf="$wallpapers_dir/$group"
-    readarray -t wallpapers < <(ls -1 "$ptf")
+    readarray -t wallpapers < <(find "$wallpapers_dir/$group" -mindepth 1 -maxdepth 1)
 
     idx=0
     len=${#wallpapers[@]}
@@ -61,7 +61,7 @@ function change_wallpaper() {
 
         # actually setting the wallpaper
         # change_gnome_wallpaper "$ptf/${wallpapers[idx]}"
-        change_hyprpaper "$ptf/${wallpapers[idx]}"
+        change_hyprpaper "${wallpapers[idx]}"
     done
 }
 
