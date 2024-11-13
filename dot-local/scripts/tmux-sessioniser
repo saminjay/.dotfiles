@@ -8,7 +8,6 @@ function select-dir() {
 
     if [[ $# -eq 0 ]]; then
         selected=$(find "${dirs[@]}" -mindepth 1 -maxdepth 2 -type d | fzf)
-        echo "$selected"
     elif [[ $# -eq 1 ]]; then
         selected=$1
     else
