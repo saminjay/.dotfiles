@@ -47,9 +47,7 @@ vim.keymap.set("n", "<leader>TS", function()
     vim.treesitter.inspect_tree({ command = "40vnew" })
 end)
 
--- TODO:
--- Make these local function and pass the functions directly to set()
-function MoveLineDown()
+_G.moveLineDown = function ()
     local ok = pcall(
         vim.api.nvim_exec2,
         string.format([['<,'>m '>+%d]], vim.v.count1),
@@ -61,7 +59,7 @@ function MoveLineDown()
     end
 end
 
-function MoveLineUp()
+_G.moveLineUp = function ()
     local ok = pcall(
         vim.api.nvim_exec2,
         string.format([['<,'>m '<-%d]], vim.v.count1 + 1),
@@ -74,5 +72,5 @@ function MoveLineUp()
 end
 
 -- move selected lines up and down
-vim.keymap.set("x", "J", ":<C-U>lua MoveLineDown()<CR>", { silent = true })
-vim.keymap.set("x", "K", ":<C-U>lua MoveLineUp()<CR>", { silent = true })
+vim.keymap.set("x", "J", ":<C-U>lua moveLineDown()<CR>")
+vim.keymap.set("x", "K", ":<C-U>lua moveLineUp()<CR>")
