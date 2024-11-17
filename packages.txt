@@ -2,6 +2,7 @@ alacritty
 btop
 cliphist
 fzf
+grim
 hypridle
 hyprland
 hyprlock
@@ -17,6 +18,7 @@ pavucontrol
 qt5ct
 qt6ct
 ripgrep
+slurp
 stow
 swaync
 tmux

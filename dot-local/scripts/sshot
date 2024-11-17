@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+function main() {
+    local filename
+    local directory
+    directory="$(xdg-user-dir PICTURES)/Screenshots/$(date +%Y/%m/%d)"
+    mkdir -p "$directory"
+    filename="SS-$(date +%H%M%S).png"
+    grim -g "$(slurp)" "$directory/$filename" || exit 1
+    notify-send "Screenshot captured at $filename"
+}
+
+main
