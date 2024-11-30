@@ -4,7 +4,8 @@
     "margin": "5 10 0 10", // top right bottom left
     "modules-left": [
         "custom/launcher",
-        "hyprland/workspaces"
+        "hyprland/workspaces",
+        "tray"
     ],
     "modules-center": [
         "custom/notif",
@@ -12,13 +13,12 @@
     ],
     "modules-right": [
         "pulseaudio",
+        "network",
         "custom/mem",
         "cpu",
         "temperature",
         "backlight",
-        "battery",
-        "tray",
-        "custom/power"
+        "battery"
     ],
     //***************************
     //*  Modules configuration  *
@@ -75,6 +75,18 @@
         },
         "on-click": "pavucontrol",
         "tooltip": false
+    },
+    "network": {
+        "interface": "wlp71s0",
+        "format": "{ifname}",
+        "format-wifi": "{essid}  ",
+        "format-ethernet": "{ipaddr}/{cidr} 󰲝 ",
+        "format-disconnected": " ",
+        "tooltip-format": "{ifname} via {gwaddr} 󰊗 ",
+        "tooltip-format-wifi": "{essid} ({signalStrength}%)  ",
+        "tooltip-format-ethernet": "{ifname} 󰲝 ",
+        "tooltip-format-disconnected": "Disconnected",
+        "max-length": 50
     },
     "custom/mem": {
         "format": "{} ",

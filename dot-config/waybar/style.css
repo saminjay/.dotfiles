@@ -160,7 +160,7 @@ window#waybar.hidden {
     animation-direction: alternate;
 }
 
-#tray {
+#network {
     padding-left: 16px;
     padding-right: 16px;
     border-radius: 20px;
