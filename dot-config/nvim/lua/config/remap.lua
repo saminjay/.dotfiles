@@ -74,3 +74,29 @@ end
 -- move selected lines up and down
 vim.keymap.set("x", "J", ":<C-U>lua moveLineDown()<CR>")
 vim.keymap.set("x", "K", ":<C-U>lua moveLineUp()<CR>")
+
+_G.isTransparent = true;
+local function toggleTransparency()
+    _G.isTransparent = not _G.isTransparent;
+
+    require("rose-pine").setup({
+        enable = {
+            terminal = true,
+            legacy_highlights = true,
+        },
+        styles = {
+            bold = true,
+            italic = true,
+            transparency = _G.isTransparent,
+        },
+        highlight_groups = {
+            Whitespace = { fg = "overlay" },
+        },
+    })
+    vim.cmd.colorscheme("rose-pine-moon")
+end
+vim.keymap.set("n", "<leader>TT", toggleTransparency, {
+    silent = true,
+    desc = "[T]oggle [T]ransparency"
+});
+
