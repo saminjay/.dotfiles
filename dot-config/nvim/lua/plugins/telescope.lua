@@ -1,16 +1,60 @@
 return {
     {
-        'nvim-telescope/telescope.nvim',
-        tag = '0.1.8',
+        "nvim-telescope/telescope.nvim",
+        tag = "0.1.8",
         cmd = "Telescope",
         keys = {
-            { "<leader>pf", ":Telescope find_files<CR>", desc = "[p]roject [f]iles" },
-            { "<C-p>",      ":Telescope git_files<CR>",  desc = "git files vscode mapping" },
-            { "<leader>ps", ":Telescope live_grep<CR>",  desc = "[p]roject [s]earch" },
-            { "<leader>pb", ":Telescope buffers<CR>",    desc = "[p]roject [b]uffers" },
-            { "<leader>h",  ":Telescope help_tags<CR>",  desc = "[h]elp" },
-            { "<leader>ts", ":Telescope treesitter<CR>", desc = "[t]ree[s]itter" },
-            { "<leader>tb", ":Telescope builtin<CR>", desc = "[t]elescope [b]uiltin pickers" },
+            {
+                "<leader>pf",
+                function()
+                    require("telescope.builtin").find_files()
+                end,
+                desc = "[p]roject [f]iles",
+            },
+            {
+                "<leader>ps",
+                function()
+                    require("telescope.builtin").live_grep()
+                end,
+                desc = "[p]roject [s]earch",
+            },
+            {
+                "<leader>pb",
+                function()
+                    require("telescope.builtin").buffers()
+                end,
+                desc = "[p]roject [b]uffers",
+            },
+            {
+                "<leader>h",
+                function()
+                    require("telescope.builtin").help_tags()
+                end,
+                desc = "[h]elp",
+            },
+            {
+                "<leader>ts",
+                function()
+                    require("telescope.builtin").treesitter()
+                end,
+                desc = "[t]ree[s]itter",
+            },
+            {
+                "<leader>tb",
+                function()
+                    require("telescope.builtin").builtin()
+                end,
+                desc = "[t]elescope [b]uiltin pickers",
+            },
+            {
+                "<leader>cf",
+                function()
+                    require("telescope.builtin").find_files({
+                        cwd = vim.fn.stdpath("config"),
+                    })
+                end,
+                desc = "nvim [c]onfig [f]iles",
+            },
         },
         opts = {
             defaults = {
@@ -23,7 +67,7 @@ return {
                     "--column",
                     "--smart-case",
                     "--hidden", -- show hidden files
-                    "--glob",   -- hide .git files
+                    "--glob", -- hide .git files
                     "!**/.git/*",
                 },
             },
@@ -33,11 +77,11 @@ return {
                         "rg",
                         "--files",
                         "--hidden", -- show hidden files
-                        "--glob",   -- hide .git files
+                        "--glob", -- hide .git files
                         "!**/.git/*",
                     },
                 },
             },
         },
     },
-};
+}

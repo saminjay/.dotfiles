@@ -8,20 +8,30 @@ return {
             vim.api.nvim_create_autocmd("LspAttach", {
                 group = vim.api.nvim_create_augroup("lsp-attach", { clear = true }),
                 callback = function(e)
-                    local opts = { buffer = e.buf }
-                    vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
-                    vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
-                    vim.keymap.set("n", "<leader>vws", vim.lsp.buf.workspace_symbol, opts)
-                    vim.keymap.set("n", "<leader>vca", vim.lsp.buf.code_action, opts)
-                    vim.keymap.set("n", "<leader>vrr", vim.lsp.buf.references, opts)
-                    vim.keymap.set("n", "<leader>vrn", vim.lsp.buf.rename, opts)
-                    -- vim.keymap.set("n", "<leader>f", vim.lsp.buf.format, opts)
+                    local function map(keys, func, desc, mode)
+                        local opts = { buffer = e.buf, desc = desc }
+                        mode = mode or "n"
+                        if type(func) == "string" then
+                            func = require("telescope.builtin")[func]
+                        end
+                        vim.keymap.set(mode, keys, func, opts)
+                    end
 
-                    vim.keymap.set("n", "<leader>vd", vim.diagnostic.open_float, opts)
-                    vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
-                    vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
+                    map("gd", "lsp_definitions", "LSP: [g]oto [d]efinition")
+                    map("gi", "lsp_implementations", "LSP: [g]oto [i]mplementation")
+                    map("gr", "lsp_references", "LSP: [g]oto [r]eferences")
+                    map("<leader>td", "lsp_type_definitions", "LSP: [t]ype [d]efinition")
+                    map("<leader>gd", "lsp_document_symbols", "LSP: [gd]ocument symbols")
+                    map("<leader>ws", "lsp_dynamic_workspace_symbols", "LSP: [w]orkspace [s]ymbols")
+                    map("K", vim.lsp.buf.hover, "LSP: hover")
+                    map("gD", vim.lsp.buf.declaration, "LSP: [g]oto [D]eclaration")
+                    map("<leader>ca", vim.lsp.buf.code_action, "LSP: [c]ode [a]ction")
+                    map("<leader>rn", vim.lsp.buf.rename, "LSP: [r]e[n]ame")
+                    map("<C-h>", vim.lsp.buf.signature_help, "LSP: signature help", "i")
 
-                    vim.keymap.set("i", "<C-h>", vim.lsp.buf.signature_help, opts)
+                    map("<leader>vd", vim.diagnostic.open_float, "Diagnostics: open float")
+                    map("]d", vim.diagnostic.goto_next, "Diagnostics: next")
+                    map("[d", vim.diagnostic.goto_prev, "Diagnostics: prev")
                 end,
             })
 
