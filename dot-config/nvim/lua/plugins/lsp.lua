@@ -23,6 +23,7 @@ return {
                     map("<leader>td", "lsp_type_definitions", "LSP: [t]ype [d]efinition")
                     map("<leader>gd", "lsp_document_symbols", "LSP: [gd]ocument symbols")
                     map("<leader>ws", "lsp_dynamic_workspace_symbols", "LSP: [w]orkspace [s]ymbols")
+
                     map("K", vim.lsp.buf.hover, "LSP: hover")
                     map("gD", vim.lsp.buf.declaration, "LSP: [g]oto [D]eclaration")
                     map("<leader>ca", vim.lsp.buf.code_action, "LSP: [c]ode [a]ction")

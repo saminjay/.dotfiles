@@ -68,7 +68,6 @@ end
 vim.keymap.set("x", "J", ":<C-U>lua moveLineDown()<CR>")
 vim.keymap.set("x", "K", ":<C-U>lua moveLineUp()<CR>")
 
-_G.isTransparent = true;
 local function toggleTransparency()
     _G.isTransparent = not _G.isTransparent;
 
