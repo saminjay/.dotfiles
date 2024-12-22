@@ -56,32 +56,47 @@ return {
                 desc = "nvim [c]onfig [f]iles",
             },
         },
-        opts = {
-            defaults = {
-                vimgrep_arguments = {
-                    "rg",
-                    "--color=never",
-                    "--no-heading",
-                    "--with-filename",
-                    "--line-number",
-                    "--column",
-                    "--smart-case",
-                    "--hidden", -- show hidden files
-                    "--glob", -- hide .git files
-                    "!**/.git/*",
-                },
-            },
-            pickers = {
-                find_files = {
-                    find_command = {
+        config = function()
+            require("telescope").setup({
+                defaults = {
+                    vimgrep_arguments = {
                         "rg",
-                        "--files",
+                        "--color=never",
+                        "--no-heading",
+                        "--with-filename",
+                        "--line-number",
+                        "--column",
+                        "--smart-case",
                         "--hidden", -- show hidden files
-                        "--glob", -- hide .git files
-                        "!**/.git/*",
+                        "--glob",
+                        "!**/.git/*", -- hide .git files
                     },
                 },
-            },
-        },
+                pickers = {
+                    find_files = {
+                        find_command = {
+                            "rg",
+                            "--files",
+                            "--hidden", -- show hidden files
+                            "--glob",
+                            "!**/.git/*", -- hide .git files
+                        },
+                    },
+                    buffers = {
+                        mappings = {
+                            i = {
+                                ["<M-d>"] = require("telescope.actions").delete_buffer,
+                            },
+                        },
+                    },
+                },
+            })
+            require("telescope").load_extension("fzf")
+        end,
+    },
+    {
+        "nvim-telescope/telescope-fzf-native.nvim",
+        lazy = true,
+        build = "make",
     },
 }
