@@ -66,10 +66,6 @@ vim.opt.fillchars = { fold = " " }
 vim.opt.foldtext = ""
 vim.opt.foldenable = true
 vim.opt.foldlevel = 2
-vim.opt.foldmethod = 'expr'
-vim.opt.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 vim.g.markdown_folding = 1 -- enable markdown folding
-
-
--- TODO: optimize this
--- vim.opt.statuscolumn = [[%!v:lua.require'config.statuscolumn'()]]
