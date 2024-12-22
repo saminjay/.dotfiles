@@ -55,6 +55,13 @@ return {
                 end,
                 desc = "nvim [c]onfig [f]iles",
             },
+            {
+                "<leader>?",
+                function()
+                    require("telescope.builtin").keymaps()
+                end,
+                desc = "[t]elescope [b]uiltin pickers",
+            },
         },
         config = function()
             require("telescope").setup({
