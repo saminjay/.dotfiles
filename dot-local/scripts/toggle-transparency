@@ -1,14 +1,15 @@
 #!/usr/bin/env bash
 
 function toggle() {
+    local opaque="opacity = 1"
+    local file="opacity.toml"
+
     cd "$XDG_CONFIG_HOME/alacritty" || exit
-    opaque="opacity = 1"
-    file="alacritty.toml"
 
     if (grep "$opaque" $file >/dev/null); then
-        sed -i "s/opacity = 1/opacity = 0.85/" $file
+        sed -i "s/opacity = 1/opacity = 0\.85/" $file
     else
-        sed -i "s/opacity = 0.85/opacity = 1/" $file
+        sed -i "s/opacity = 0\.85/opacity = 1/" $file
     fi
 }
 
