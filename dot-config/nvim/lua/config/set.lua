@@ -72,4 +72,4 @@ vim.g.markdown_folding = 1 -- enable markdown folding
 
 
 -- TODO: optimize this
-vim.opt.statuscolumn = [[%!v:lua.require'config.statuscolumn'()]]
+-- vim.opt.statuscolumn = [[%!v:lua.require'config.statuscolumn'()]]

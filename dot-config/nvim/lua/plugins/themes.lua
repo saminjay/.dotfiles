@@ -1,10 +1,13 @@
 local rose_pine = {
     "rose-pine/neovim",
     name = "rose-pine",
-    lazy = false,    -- load on startup
+    lazy = false, -- load on startup
     priority = 1000, -- high priority, load before everything else
     config = function()
+        ---@diagnostic disable-next-line: missing-fields
         require("rose-pine").setup({
+            variant = "moon",
+            dark_variant = "moon",
             enable = {
                 terminal = true,
                 legacy_highlights = true,
@@ -16,15 +19,17 @@ local rose_pine = {
             },
             highlight_groups = {
                 Whitespace = { fg = "overlay" },
+                SnacksIndent = { fg = "overlay" },
+                SnacksIndentScope = { fg = "iris" },
             },
         })
         -- load the colorscheme here
-        vim.cmd.colorscheme("rose-pine-moon")
+        vim.cmd.colorscheme("rose-pine")
     end,
 }
 
 local lualine = {
-    'nvim-lualine/lualine.nvim',
+    "nvim-lualine/lualine.nvim",
     event = "VeryLazy",
     config = function()
         local custom_rose_pine = require("lualine.themes.rose-pine")
@@ -34,56 +39,56 @@ local lualine = {
         custom_rose_pine.visual.c.bg = "None"
         custom_rose_pine.normal.c.bg = "None"
 
-        require "lualine".setup {
+        require("lualine").setup({
             options = {
                 theme = custom_rose_pine,
-                component_separators = '',
+                component_separators = "",
                 section_separators = {
-                    left = '',
-                    right = '',
+                    left = "",
+                    right = "",
                 },
             },
             sections = {
-                lualine_a = { 'mode' },
-                lualine_b = { 'branch', 'diagnostics' },
-                lualine_c = { 'filename' },
-                lualine_x = { 'encoding' },
-                lualine_y = { 'filetype', 'progress' },
-                lualine_z = { 'location' },
+                lualine_a = { "mode" },
+                lualine_b = { "branch", "diagnostics" },
+                lualine_c = { "filename" },
+                lualine_x = { "encoding" },
+                lualine_y = { "filetype", "progress" },
+                lualine_z = { "location" },
             },
             inactive_sections = {
-                lualine_a = { 'filename' },
+                lualine_a = { "filename" },
                 lualine_b = {},
                 lualine_c = {},
                 lualine_x = {},
                 lualine_y = {},
-                lualine_z = { 'location' },
+                lualine_z = { "location" },
             },
             tabline = {},
             extensions = {},
-        };
-    end
+        })
+    end,
 }
 
 local fidget = {
-    'j-hui/fidget.nvim',
+    "j-hui/fidget.nvim",
     event = "VeryLazy",
     opts = {
         notification = {
-            poll_rate = 10,               -- How frequently to update and render notifications
+            poll_rate = 10, -- How frequently to update and render notifications
             filter = vim.log.levels.INFO, -- Minimum notifications level
-            override_vim_notify = true,   -- Automatically override vim.notify() with Fidget
+            override_vim_notify = true, -- Automatically override vim.notify() with Fidget
 
             -- Options related to the notification window and buffer
             window = {
                 normal_hl = "Comment", -- Base highlight group in the notification window
-                winblend = 0,          -- Background color opacity in the notification window
-                border = "rounded",    -- Border around the notification window
-                zindex = 45,           -- Stacking priority of the notification window
-                x_padding = 1,         -- Padding from right edge of window boundary
-                y_padding = 1,         -- Padding from bottom edge of window boundary
-                align = "bottom",      -- How to align the notification window
-                relative = "editor",   -- What the notification window position is relative to
+                winblend = 0, -- Background color opacity in the notification window
+                border = "rounded", -- Border around the notification window
+                zindex = 45, -- Stacking priority of the notification window
+                x_padding = 1, -- Padding from right edge of window boundary
+                y_padding = 1, -- Padding from bottom edge of window boundary
+                align = "bottom", -- How to align the notification window
+                relative = "editor", -- What the notification window position is relative to
             },
         },
     },
