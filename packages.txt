@@ -2,6 +2,7 @@ alacritty
 btop
 cliphist
 fzf
+glow
 grim
 hypridle
 hyprland
