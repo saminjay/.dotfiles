@@ -46,8 +46,11 @@ return {
             only_scope = true,
             scope = {
                 enabled = true,
-                edge = false,
+                edge = true,
                 cursor = false,
+                blocks = {
+                    enabled = true,
+                },
             },
         },
         input = { enabled = true },

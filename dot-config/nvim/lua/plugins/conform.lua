@@ -28,6 +28,7 @@ return {
                 css = { "prettier" },
                 scss = { "prettier" },
                 less = { "prettier" },
+                markdown = { "prettier" },
                 yaml = { "prettier" },
                 graphql = { "prettier" },
             },
