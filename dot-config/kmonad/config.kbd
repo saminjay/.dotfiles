@@ -3,8 +3,6 @@
     output (uinput-sink "My KMonad output")
     fallthrough true
     allow-cmd false
-
-    ;; Set the implicit around to `around`
     implicit-around around
 )
 
