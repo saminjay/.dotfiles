@@ -17,6 +17,8 @@ return {
                     "vimdoc",
                     "query",
                     "javascript",
+                    "jsdoc",
+                    "regex",
                     "typescript",
                     "html",
                     "css",
