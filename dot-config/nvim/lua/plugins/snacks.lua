@@ -43,14 +43,9 @@ return {
         bigfile = { enabled = true },
         indent = {
             enabled = true,
-            only_scope = true,
             scope = {
                 enabled = true,
-                edge = true,
                 cursor = false,
-                blocks = {
-                    enabled = true,
-                },
             },
         },
         input = { enabled = true },
