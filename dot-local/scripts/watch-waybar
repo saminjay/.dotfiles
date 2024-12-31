@@ -1,17 +1,75 @@
 #!/usr/bin/env bash
 
-function main() {
+function usage() {
+    echo ""
+    echo "Usage: ${0##*/} [-v] [-k | --kill]"
+    echo ""
+    echo "-v                    verbose"
+    echo ""
+    echo "-k, --kill            kill all the instances of this script and exit"
+    echo "                      Note: a successfull run will also kill all"
+    echo "                            the previous instances, should not be"
+    echo "                            matched with other options"
+    echo ""
+    echo "-h, -?, --help        show this message than exit"
+}
+
+function validate-input() {
+    if [[ $# -gt 1 ]]; then
+        echo "ERROR: wrong number of options. See usage"
+        usage
+        exit 1
+    fi
+    if [[ $# -eq 1 ]]; then
+        case $1 in
+        -h | -\? | --help)
+            usage
+            exit 0
+            ;;
+        -v)
+            output="stdout"
+            ;;
+        -k | --kill)
+            kill_prev
+            echo "All processes killed"
+            exit 0
+            ;;
+        *)
+            echo "ERROR: $1 is in an invalid option. See usage"
+            usage
+            exit 1
+            ;;
+        esac
+    fi
+}
+
+function kill_prev() {
+    # $$ contains current pid (grep ignore so it doesn't suicide)
+    # TODO: Find a better way, this also returns the pid of the subshell
+    local processes
+    readarray -t processes < <(pgrep -f "$0" | grep -v "$$")
+    kill "${processes[@]}" >/dev/null 2>&1
+}
+
+function watch() {
     local config_files
     config_files="$HOME/.config/waybar"
 
     trap "killall waybar" EXIT
 
     while true; do
-        waybar &
+        killall waybar >/dev/null 2>&1
+        waybar >/dev/$output 2>&1 &
         disown
         inotifywait -e create,modify,delete "$config_files"
-        killall waybar
     done
 }
 
-main
+function main() {
+    local output="null"
+    validate-input "$@"
+    kill_prev
+    watch
+}
+
+main "$@"
