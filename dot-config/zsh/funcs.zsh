@@ -21,6 +21,7 @@ function mkcd() {
 
 # git fetch pr
 function git-pr() {
-    git fetch $1 pull/$2/head:pr-$2
-    echo "pulled pr #$2 to branch: pr-$2"
+    if git fetch $1 pull/$2/head:pr-$2 ; then
+        echo "pulled pr #$2 to branch: pr-$2"
+    fi
 }
