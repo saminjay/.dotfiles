@@ -21,6 +21,7 @@ qt5ct
 qt6ct
 ripgrep
 slurp
+starship
 stow
 swaync
 tmux
