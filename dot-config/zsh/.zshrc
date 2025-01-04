@@ -5,7 +5,7 @@ bindkey -v
 
 # End of lines configured by zsh-newuser-install
 # The following lines were added by compinstall
-zstyle :compinstall filename '/home/neo/.zshrc'
+zstyle :compinstall filename "${XDG_CONFIG_HOME}/zsh/.zshrc"
 
 autoload -Uz compinit
 compinit
@@ -14,3 +14,10 @@ compinit
 source <(fzf --zsh)
 
 eval "$(starship init zsh)"
+
+# print new line before every prompt except the first one
+precmd() {
+    precmd() {
+        echo
+    }
+}

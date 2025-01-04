@@ -1,7 +1,7 @@
 "$schema" = "https://starship.rs/config-schema.json"
 
 format = """[](bold gray) $directory$git_branch$git_status $fill $all"""
-add_newline = true
+add_newline = false
 
 # Wait 10 milliseconds for starship to check files under the current directory.
 scan_timeout = 10
