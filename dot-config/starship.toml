@@ -10,6 +10,8 @@ scan_timeout = 10
 format = "[$user]($style) "
 
 [directory]
+format ="[$read_only]($read_only_style)[$path]($style) "
+read_only = "󰌾 "
 truncation_length = 4
 truncation_symbol = "../"
 
@@ -63,3 +65,7 @@ detect_extensions = [
 ]
 format = "[$symbol($version(-$name))]($style) "
 symbol = " "
+
+[golang]
+format = "[$symbol($version)]($style) "
+symbol = " "

@@ -7,9 +7,6 @@ sudo pacman -S - <packages.txt
 # Tmux Plugin Manager
 git clone --depth=1 https://github.com/tmux-plugins/tpm "${XDG_DATA_HOME}/tmux/plugins/tpm"
 
-# Powerlevel10k theme for zsh
-git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "${XDG_DATA_HOME}/zsh/plugins/powerlevel10k"
-
 # Change login shell to zsh
 chsh -s "$(which zsh)"
 
