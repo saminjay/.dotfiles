@@ -1,5 +1,6 @@
 dot-config/alacritty/opacity.toml
 dot-config/nvim/lazy-lock.json
+dot-config/nvim/spell
 dot-config/btop/btop.log
 dot-config/zsh/.zcompdump
 Session.vim

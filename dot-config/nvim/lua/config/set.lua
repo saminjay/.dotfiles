@@ -1,4 +1,4 @@
--- disabled perl and ruby support
+-- disabled Perl and Ruby support
 vim.g.loaded_perl_provider = 0
 vim.g.loaded_ruby_provider = 0
 
@@ -71,3 +71,10 @@ vim.opt.foldlevel = 2
 vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 vim.g.markdown_folding = 1 -- enable markdown folding
+
+vim.opt.spell = true
+vim.opt.spelloptions = {
+    "camel",
+    "noplainbuffer",
+}
+vim.opt.spellcapcheck = ""
