@@ -7,6 +7,8 @@ vim.g.netrw_browse_split = 0
 vim.g.netrw_banner = 0
 vim.g.netrw_winsize = 15
 
+vim.g.editorconfig = true
+
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.cursorline = true
