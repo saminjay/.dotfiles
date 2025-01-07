@@ -18,7 +18,6 @@ vim.keymap.set("n", "N", "Nzzzv")
 -- pastes from the clipboard/+ register
 vim.keymap.set({ "n", "x" }, "<leader>P", [["+P]])
 
--- next greatest remap ever : asbjornHaland
 -- yanks to the + register/clipboard
 vim.keymap.set({ "n", "x" }, "<leader>y", [["+y]])
 vim.keymap.set("n", "<leader>Y", [["+y$]]) -- 'Y' is remapped to 'y$' in nvim
@@ -33,7 +32,7 @@ vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
 vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
 
 -- replace the current word in entire file
-vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gcI<Left><Left><Left><Left>]])
 
 -- Treesitter playground
 vim.keymap.set("n", "<leader>TS", function()
