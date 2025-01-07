@@ -1,0 +1,66 @@
+" packages
+packadd! editorconfig
+packadd! comment
+
+" colorscheme
+colorscheme slate
+
+" options
+let netrw_bufsettings = "noma nomod nu nobl nowrap ro rnu"
+let netrw_browse_split = 0
+let netrw_banner = 0
+let netrw_winsize = 15
+
+set nu rnu
+set cul culopt=number
+set spr sb
+set ts=4 sts=4 sw=4 et ai si sta
+set nowrap
+set ss=1 siso=4
+set noswf nobk udf
+set hls is
+set tgc
+set so=8
+set ut=50
+set cc=81,101
+set noto nottimeout
+
+set list
+set lcs=nbsp:󱁐
+set lcs+=trail:
+set lcs+=precedes:◀
+set lcs+=extends:▶
+set lcs+=tab:│󱦰
+set lcs+=leadmultispace:│\ \ \ "
+
+filetype on
+syntax on
+set mouse=a
+
+set background=dark
+
+" keymaps
+let mapleader=" "
+
+nnoremap <leader>pv :Ex<CR>
+nnoremap n nzzzv
+nnoremap N Nzzzv
+
+nnoremap <leader>y "+y
+xnoremap <leader>y "+y
+nnoremap Y y$
+nnoremap <leader>Y "+y$
+
+nnoremap <leader>d "_d
+xnoremap <leader>d "_d
+nnoremap <leader>D "_D
+
+nnoremap <c-k> :cnext<CR>zz
+nnoremap <c-j> :cprev<CR>zz
+nnoremap <leader>k :lnext<CR>zz
+nnoremap <leader>j :lprev<CR>zz
+
+nnoremap <leader>s :%s/\<<C-r><C-w>\>/<C-r><C-w>/gcI<Left><Left><Left><Left>
+
+xnoremap J :m '<+1d<CR>gv=gv
+xnoremap K :m '<-2d<CR>gv=gv
