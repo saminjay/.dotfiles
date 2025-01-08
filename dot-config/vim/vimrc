@@ -47,10 +47,12 @@ nnoremap <leader>pv :Ex<CR>
 nnoremap n nzzzv
 nnoremap N Nzzzv
 
-nnoremap <leader>y "+y
-xnoremap <leader>y "+y
 nnoremap Y y$
-nnoremap <leader>Y "+y$
+if has("clipboard")
+    nnoremap <leader>y "+y
+    xnoremap <leader>y "+y
+    nnoremap <leader>Y "+y$
+endif
 
 nnoremap <leader>d "_d
 xnoremap <leader>d "_d
