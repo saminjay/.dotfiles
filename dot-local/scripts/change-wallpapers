@@ -13,7 +13,6 @@ function validate_input() {
     local fl
 
     cd "${wallpapers_dir}" || exit
-    # shellcheck disable=SC2012
     readarray -t opts < <(find . -mindepth 1 -maxdepth 1 -type d |
         sed "s/\.\///" |
         grep -v ".git")
