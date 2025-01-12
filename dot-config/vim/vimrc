@@ -23,6 +23,8 @@ set ts=4 sts=4 sw=4 et ai si sta
 set nowrap
 set ss=1 siso=4
 set noswf nobk udf
+silent! :! mkdir -p ~/.config/vim/undodir
+set undodir=~/.config/vim/undodir
 set hls is scs ic
 set tgc
 set so=8

@@ -69,3 +69,7 @@ symbol = " "
 [golang]
 format = "[$symbol($version)]($style) "
 symbol = " "
+
+[python]
+format ="[${symbol}${pyenv_prefix}(${version} )(\\($virtualenv\\) )]($style)"
+symbol = " "
