@@ -12,6 +12,7 @@ compinit
 # End of lines added by compinstall
 
 source <(fzf --zsh)
+source <(volta completions zsh)
 
 # print new line before every prompt except the first one
 precmd() {
