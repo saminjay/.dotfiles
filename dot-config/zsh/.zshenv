@@ -16,7 +16,7 @@ export GOBIN="$GOPATH/bin"
 export VOLTA_HOME="$XDG_CONFIG_HOME/volta"
 
 path=(
-    "$VOLTA_HOME/bin:$PATH"
+    "$VOLTA_HOME/bin"
     "$GOBIN"
     $path
     "$HOME/.local/scripts"
