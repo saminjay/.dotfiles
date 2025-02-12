@@ -62,6 +62,13 @@ return {
                 end,
                 desc = "[t]elescope [b]uiltin pickers",
             },
+            {
+                "<leader>mh",
+                function()
+                    require("telescope").extensions.fidget.fidget()
+                end,
+                desc = "[t]elescope [b]uiltin pickers",
+            },
         },
         config = function()
             require("telescope").setup({
@@ -99,6 +106,7 @@ return {
                 },
             })
             require("telescope").load_extension("fzf")
+            require("telescope").load_extension("fidget")
         end,
     },
     {
