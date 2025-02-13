@@ -34,9 +34,7 @@ function validate_input() {
 }
 
 function change_hyprpaper() {
-    eval hyprctl hyprpaper unload all
-    eval hyprctl hyprpaper preload "$1"
-    eval hyprctl hyprpaper wallpaper ",$1"
+    eval hyprctl hyprpaper reload ",$1"
 }
 
 function change_gnome_wallpaper() {
@@ -54,13 +52,13 @@ function change_wallpaper() {
     len=${#wallpapers[@]}
 
     while true; do
-        sleep 1m
         # randomly choose a wallpaper
         idx=$((RANDOM % len))
 
         # actually setting the wallpaper
         # change_gnome_wallpaper "$ptf/${wallpapers[idx]}"
         change_hyprpaper "${wallpapers[idx]}"
+        sleep 1m
     done
 }
 
