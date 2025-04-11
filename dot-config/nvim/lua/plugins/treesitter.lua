@@ -13,6 +13,7 @@ return {
                     "commonlisp",
                     "cpp",
                     "css",
+                    "dockerfile",
                     "go",
                     "html",
                     "javascript",

@@ -2,26 +2,26 @@
 #                   FUNCTIONS                                                  #
 ################################################################################
 
-# NeoVim alias function, if no arguements open directory view
+# NeoVim alias function, if no arguments open directory view
 function v() {
     if [[ -p /dev/stdin ]]; then
-        cat /dev/stdin | nvim $@
-    elif [ -z $1 ]; then
+        cat /dev/stdin | nvim "$@"
+    elif [ -z "$1" ]; then
         nvim .
     else
-        nvim $@
+        nvim "$@"
     fi
 }
 
 # mkcd function
 function mkcd() {
-    mkdir -p $1
-    cd $1
+    mkdir -p "$1"
+    cd "$1"
 }
 
 # git fetch pr
 function git-pr() {
-    if git fetch $1 pull/$2/head:pr-$2 ; then
+    if git fetch "$1" "pull/$2/head:pr-$2" ; then
         echo "pulled pr #$2 to branch: pr-$2"
     fi
 }

@@ -19,3 +19,11 @@ autocmd("TextYankPost", {
         })
     end,
 })
+
+autocmd("BufEnter", {
+    group = augroup("WordWrap", { clear = true }),
+    pattern = "*.md",
+    callback = function()
+        vim.o.wrap = true
+    end,
+})

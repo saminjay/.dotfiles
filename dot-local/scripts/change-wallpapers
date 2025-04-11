@@ -12,7 +12,7 @@ function validate_input() {
     local opts
     local fl
 
-    cd "${wallpapers_dir}" || exit
+    cd "${wallpapers_dir}" || exit 1
     readarray -t opts < <(find . -mindepth 1 -maxdepth 1 -type d |
         sed "s/\.\///" |
         grep -v ".git")
@@ -35,6 +35,8 @@ function validate_input() {
 
 function change_hyprpaper() {
     eval hyprctl hyprpaper reload ",$1"
+    # TODO: remove after mem leak fix
+    exit 0
 }
 
 function change_gnome_wallpaper() {
@@ -52,13 +54,13 @@ function change_wallpaper() {
     len=${#wallpapers[@]}
 
     while true; do
+        sleep 1m
         # randomly choose a wallpaper
         idx=$((RANDOM % len))
 
         # actually setting the wallpaper
-        # change_gnome_wallpaper "$ptf/${wallpapers[idx]}"
+        # change_gnome_wallpaper "${wallpapers[idx]}"
         change_hyprpaper "${wallpapers[idx]}"
-        sleep 1m
     done
 }
 

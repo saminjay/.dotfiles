@@ -8,7 +8,7 @@ export __GLX_VENDOR_LIBRARY_NAME=nvidia
 
 export TERMINAL=alacritty
 export EDITOR=nvim
-export GIT_EDITOR=$EDITOR
+export GIT_EDITOR="$EDITOR"
 
 export GOPATH="$XDG_DATA_HOME/go"
 export GOMODCACHE="$XDG_CACHE_HOME/go/mod"
@@ -25,7 +25,7 @@ path=(
 export PATH
 
 # History
-export HISTFILE=$XDG_CACHE_HOME/zsh/.zhistory
+export HISTFILE="$XDG_CACHE_HOME/zsh/.zhistory"
 export HISTSIZE=5000
 export SAVEHIST=5000
 export HISTORY_IGNORE="(ls|cd|pwd|exit|cd ..|lsa|lsl|htop|btop|td)"
@@ -45,4 +45,4 @@ export CUDA_CACHE_PATH="$XDG_CACHE_HOME/nv"
 export PYTHON_HISTORY="$XDG_STATE_HOME/python/history"
 export PYTHONPYCACHEPREFIX="$XDG_CACHE_HOME/python"
 export PYTHONUSERBASE="$XDG_DATA_HOME/python"
-# export XCURSOR_PATH=${XCURSOR_PATH}:~/.local/share/icons
+# export XCURSOR_PATH="${XCURSOR_PATH}:~/.local/share/icons"

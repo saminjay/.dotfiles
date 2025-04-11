@@ -82,16 +82,19 @@ return {
             )
 
             local servers = {
-                lua_ls = {},
-                gopls = {},
-                ts_ls = {},
-                cssls = {},
-                html = {},
-                clangd = {},
                 bashls = {},
-                marksman = {},
+                clangd = {},
+                cssls = {},
+                dockerls = {},
+                eslint = {},
+                gopls = {},
+                html = {},
                 jsonls = {},
+                lemminx = {},
+                lua_ls = {},
+                marksman = {},
                 pyright = {},
+                tailwindcss = {},
                 taplo = {
                     -- INFO: this is required for taplo LSP to work in non-git repositories
                     root_dir = require("lspconfig.util").root_pattern(
@@ -99,9 +102,7 @@ return {
                         ".git"
                     ),
                 },
-                lemminx = {},
-                eslint = {},
-                tailwindcss = {},
+                ts_ls = {},
             }
 
             local ensure_installed = vim.tbl_keys(servers)

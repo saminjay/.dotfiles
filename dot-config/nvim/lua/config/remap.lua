@@ -32,14 +32,18 @@ vim.keymap.set("n", "<leader>j", "<cmd>lnext<CR>zz")
 vim.keymap.set("n", "<leader>k", "<cmd>lprev<CR>zz")
 
 -- replace the current word in entire file
-vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gcI<Left><Left><Left><Left>]])
+vim.keymap.set(
+    "n",
+    "<leader>s",
+    [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gcI<Left><Left><Left><Left>]]
+)
 
 -- Treesitter playground
 vim.keymap.set("n", "<leader>TS", function()
     vim.treesitter.inspect_tree({ command = "40vnew" })
 end)
 
-_G.moveLineDown = function ()
+_G.moveLineDown = function()
     local ok = pcall(
         vim.api.nvim_exec2,
         string.format([['<,'>m '>+%d]], vim.v.count1),
@@ -51,7 +55,7 @@ _G.moveLineDown = function ()
     end
 end
 
-_G.moveLineUp = function ()
+_G.moveLineUp = function()
     local ok = pcall(
         vim.api.nvim_exec2,
         string.format([['<,'>m '<-%d]], vim.v.count1 + 1),
@@ -66,3 +70,7 @@ end
 -- move selected lines up and down
 vim.keymap.set("x", "J", ":<C-U>lua moveLineDown()<CR>")
 vim.keymap.set("x", "K", ":<C-U>lua moveLineUp()<CR>")
+
+vim.keymap.set("n", "<leader>wp", function()
+    vim.o.wrap = not vim.o.wrap
+end)
