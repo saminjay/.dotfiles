@@ -25,3 +25,13 @@ function git-pr() {
         echo "pulled pr #$2 to branch: pr-$2"
     fi
 }
+
+# Fan speed max
+function fanctl() {
+    if [[ $# -eq 2 ]]; then
+        sudo i8kctl fan1 $1
+        sudo i8kctl fan3 $2
+    else
+        echo "2 arguments required for fan 1 and 2";
+    fi
+}

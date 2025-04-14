@@ -8,7 +8,7 @@ alias lsa="ls -A"
 alias lsl="ls -lAh"
 alias grep="grep --color=auto"
 alias td="v ~/.personal/TODO.md"
-alias k="sudo kmonad ~/.config/kmonad/config.kbd"
+alias k="sudo -b kmonad ~/.config/kmonad/config.kbd"
 
 # frequent dirs
 alias personal="cd ~/.personal"
