@@ -1,13 +1,15 @@
 [Unit]
 Description=KMonad Keyboard Remapper
 Documentation=https://github.com/kmonad/kmonad
-After=graphical.target
+After=network.target
 
 [Service]
 Type=simple
 ExecStart=/usr/bin/kmonad /home/neo/.config/kmonad/config.kbd
 Restart=always
-RestartSec=3
+RestartSec=5
+User=root
+Group=root
 
 [Install]
 WantedBy=multi-user.target
