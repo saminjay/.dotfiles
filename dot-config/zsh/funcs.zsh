@@ -26,7 +26,7 @@ function git-pr() {
     fi
 }
 
-# Fan speed max
+# Fan speed control
 function fanctl() {
     if [[ $# -eq 2 ]]; then
         sudo i8kctl fan1 $1
