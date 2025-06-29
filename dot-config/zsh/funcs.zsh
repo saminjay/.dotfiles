@@ -29,6 +29,7 @@ function git-pr() {
 # Fan speed control
 function fanctl() {
     if [[ $# -eq 2 ]]; then
+        sudo echo "" || return 1
         sudo i8kctl fan1 $1
         sudo i8kctl fan3 $2
     else

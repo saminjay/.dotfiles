@@ -145,7 +145,7 @@
         "menu-actions": {
             "shutdown": "shutdown now",
             "reboot": "reboot",
-            "suspend": "waybar-suspend",
+            "suspend": "systemctl suspend",
             "lock": "hyprlock"
         }
     },

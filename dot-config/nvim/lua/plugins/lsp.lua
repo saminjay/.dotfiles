@@ -1,5 +1,6 @@
 return {
     {
+        -- TODO: Convert it to native nvim configuration
         -- Main LSP Configuration
         "neovim/nvim-lspconfig",
         event = "BufReadPre",
@@ -26,7 +27,7 @@ return {
                         "lsp_implementations",
                         "LSP: [g]oto [i]mplementation"
                     )
-                    map("gr", "lsp_references", "LSP: [g]oto [r]eferences")
+                    map("gR", "lsp_references", "LSP: [g]oto [r]eferences")
                     map(
                         "<leader>td",
                         "lsp_type_definitions",
@@ -49,12 +50,6 @@ return {
                         vim.lsp.buf.declaration,
                         "LSP: [g]oto [D]eclaration"
                     )
-                    map(
-                        "<leader>ca",
-                        vim.lsp.buf.code_action,
-                        "LSP: [c]ode [a]ction"
-                    )
-                    map("<leader>rn", vim.lsp.buf.rename, "LSP: [r]e[n]ame")
                     map(
                         "<C-h>",
                         vim.lsp.buf.signature_help,
@@ -85,6 +80,7 @@ return {
                 bashls = {},
                 clangd = {},
                 cssls = {},
+                cssmodules_ls = {},
                 dockerls = {},
                 eslint = {},
                 gopls = {},

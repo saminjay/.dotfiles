@@ -3,10 +3,10 @@
 function input-validation() {
     if [[ $# -ne 1 ]]; then
         echo "Only one argument is required, on or off"
-        exit
+        exit 1
     elif [[ $1 != "on" ]] && [[ $1 != "off" ]]; then
         echo "Only one argument is required, on or off"
-        exit
+        exit 1
     fi
 }
 
@@ -23,10 +23,12 @@ function game-off() {
     sudo i8kctl fan3 1
     sudo systemctl start keyboard-mapping.service
     battery-monitor -q --min=64 --max=67
+    ~/.local/python/ty-plug -s off
 }
 
 function main() {
     input-validation "$@"
+    sudo echo "" || exit 1
     if [[ $1 == "on" ]]; then
         game-on
     else
