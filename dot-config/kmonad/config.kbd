@@ -1,5 +1,5 @@
 (defcfg
-    input  (device-file "/dev/input/by-id/usb-SINO_WEALTH_Gaming_KB-event-kbd")
+    input  (device-file "/dev/input/by-id/usb-SEMICO_USB_Gaming_Keyboard-event-kbd")
     output (uinput-sink "My KMonad output")
     fallthrough true
     allow-cmd false
