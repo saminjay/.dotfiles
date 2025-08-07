@@ -2,10 +2,10 @@
 
 function input-validation() {
     if [[ $# -ne 1 ]]; then
-        echo "Only one argument is required, on or off"
+        echo "Only one argument is required, [on] or [off]"
         exit 1
     elif [[ $1 != "on" ]] && [[ $1 != "off" ]]; then
-        echo "Only one argument is required, on or off"
+        echo "either [on] or [off]"
         exit 1
     fi
 }
@@ -14,8 +14,7 @@ function game-on() {
     sudo i8kctl fan1 2
     sudo i8kctl fan3 2
     sudo systemctl stop keyboard-mapping.service
-    battery-monitor -k
-    ~/.local/python/ty-plug -s on
+    battery-monitor -k on
 }
 
 function game-off() {
@@ -23,7 +22,6 @@ function game-off() {
     sudo i8kctl fan3 1
     sudo systemctl start keyboard-mapping.service
     battery-monitor -q --min=64 --max=67
-    ~/.local/python/ty-plug -s off
 }
 
 function main() {

@@ -14,7 +14,8 @@ function usage() {
     echo ""
     echo "--quiet, -q           don't show notifications"
     echo ""
-    echo "-k, --kill            kill all the instances of this script and exit"
+    echo "-k, --kill [on/off]   kill all the instances of this script and exit"
+    echo "                      with switch either [on/off] or in the previous state"
     echo "                      Note: a successfull run will also kill all"
     echo "                            the previous instances, should not be"
     echo "                            matched with other options"
@@ -30,6 +31,12 @@ function kill_prev() {
     kill "${processes[@]}" >/dev/null 2>&1
 }
 
+function switch() {
+    if [[ $1 == "on" ]] || [[ $1 == "off" ]]; then
+        ~/.local/python/ty-plug -s "$1" -l "M/;<Jy^\`9k~VQayT"
+    fi
+}
+
 function validate_input() {
     while :; do
         case $1 in
@@ -40,6 +47,7 @@ function validate_input() {
         -k | --kill)
             kill_prev
             echo "All processes killed"
+            switch "$2"
             exit 0
             ;;
         --min=?*)
@@ -105,7 +113,7 @@ function monitor() {
 
         if [[ "$(get_plugged)" == "yes" ]] && [[ $bat_percent -ge $max ]]; then
             $should_notify && notify "Battery reached $max%" "Unplug the power cable."
-            ~/.local/python/ty-plug -s off -l "M/;<Jy^\`9k~VQayT"
+            switch off
             i=0
             while [ "$(get_plugged)" == "yes" ] && [ $i -lt 100 ]; do
                 i=$((i + 1))
@@ -114,7 +122,7 @@ function monitor() {
             $should_notify && kill -2 $!
         elif [[ "$(get_plugged)" == "no" ]] && [[ $bat_percent -le $min ]]; then
             $should_notify && notify "Battery is below $min%" "Plug in the power cable."
-            ~/.local/python/ty-plug -s on -l "M/;<Jy^\`9k~VQayT"
+            switch on
             local i=0
             while [ "$(get_plugged)" == "no" ] && [ $i -lt 100 ]; do
                 i=$((i + 1))
