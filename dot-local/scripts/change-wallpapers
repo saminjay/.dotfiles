@@ -35,8 +35,6 @@ function validate_input() {
 
 function change_hyprpaper() {
     eval hyprctl hyprpaper reload ",$1"
-    # TODO: remove after mem leak fix
-    exit 0
 }
 
 function change_gnome_wallpaper() {

@@ -104,14 +104,14 @@ window#waybar.hidden {
     /* Added border */
 }
 
-#pulseaudio {
+#wireplumber {
     padding-left: 16px;
     padding-right: 16px;
     border-radius: 20px;
 }
 
-#pulseaudio.muted,
-#pulseaudio.source-muted {
+#wireplumber.muted,
+#wireplumber.source-muted {
     background-color: @tokyonight-muted;
     color: @tokyonight-bg ;
 }
@@ -128,16 +128,16 @@ window#waybar.hidden {
     border-radius: 20px;
 }
 
-#temperature {
-    padding-left: 16px;
-    padding-right: 16px;
-    border-radius: 20px;
-}
+/* #temperature { */
+/*     padding-left: 16px; */
+/*     padding-right: 16px; */
+/*     border-radius: 20px; */
+/* } */
 
-#temperature.critical {
-    color: @tokyonight-bg;
-    background-color: @tokyonight-critical-bg;
-}
+/* #temperature.critical { */
+/*     color: @tokyonight-bg; */
+/*     background-color: @tokyonight-critical-bg; */
+/* } */
 
 #backlight {
     padding-left: 16px;
