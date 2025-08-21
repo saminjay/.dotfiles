@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+if [ $# -eq 1 ]; then
+    KBD_DEV="$1"
+else
+    KBD_DEV=$(find /dev/input/by-id/*kbd* | fzf)
+fi
+
+export KBD_DEV
+config=$(envsubst < /home/neo/.config/kmonad/config.kbd)
+
+sudo echo "$config" > /tmp/kmonad-config.kbd
+
+cat /tmp/kmonad-config.kbd
+sudo kmonad <(echo "$config")

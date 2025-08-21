@@ -93,7 +93,7 @@ function notify() {
 
 function get_plugged() {
     local adapter_path
-    adapter_path=$(upower -e | grep line_power)
+    adapter_path=$(upower -e | grep line_power_AC)
     upower -i "$adapter_path" | grep -A2 "line-power" | grep online | awk "{ print \$2 }"
 }
 

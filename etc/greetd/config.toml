@@ -2,5 +2,6 @@
 vt = 1
 
 [default_session]
-command = "tuigreet --cmd Hyprland"
+# command = "tuigreet -r --remember-session --user-menu --theme \"border=magenta;text=cyan;prompt=green;time=red;action=blue;button=yellow;container=black;input=red\" -c Hyprland"
+command = "tuigreet -r --remember-session --user-menu -t -c Hyprland"
 user = "neo"

@@ -1,49 +1,111 @@
-[XDG Base Directories](https://wiki.archlinux.org/title/XDG_Base_Directory)
+# 🛠️ Dotfiles
 
-# List of packages configured
+My personal configuration for terminal, editor, shell, and desktop environment — built around **Hyprland** on Wayland.
+These dotfiles are managed with [GNU Stow](https://www.gnu.org/software/stow/) and can be quickly installed with the provided script.
 
-## [Alacritty](https://github.com/alacritty/alacritty)
+> ⚠️ These configs are tailored for my personal workflow. They may not be universal, but suggestions, optimizations, and feedback are always welcome!
 
-A GPU accelerated Terminal Emulator
+---
 
-## [TMUX](https://github.com/tmux/tmux/wiki)
+## ✨ Preview
 
-A Terminal multiplexer, to store multiple sessions and open panes and windows inside the terminal
+Here’s what the setup looks like:
 
-## [ZSH](https://www.zsh.org/)
+![Desktop Screenshot](images/desktop.png)
+![Neovim Config](images/nvim.png)
+![Waybar](images/waybar.png)
 
-Fork of bash with many new features and config options
-PS: ZSH does not support XDG_Base_Directory spec, so `export ZDOTDIR=$HOME/.config/zsh/` at the start up. I've done so in Hyprland environment variable.
+---
 
-## [NVIM](https://github.com/neovim/neovim)
+## ✨ Features
 
-Fork of vim with many new features and config options
+This setup includes configurations for:
 
-## [Hyprland](https://wiki.hyprland.org/)
+- **Alacritty** – GPU-accelerated terminal emulator
+- **tmux** – Terminal multiplexer for persistent sessions
+- **zsh** – Interactive shell (with `ZDOTDIR` under `~/.config/zsh` for XDG compliance)
+- **Neovim** – Custom editor setup with plugins and LSP
+- **Hyprland** – Dynamic tiling Wayland compositor
+- **Waybar** – Status bar tailored for Hyprland
+- **Swaync** – Wayland-native notification daemon
+- **Wofi** – Launcher menu (Wayland alternative to dmenu)
 
-A dynamic tiling window manager
+---
 
-## [Waybar](https://github.com/Alexays/Waybar/wiki)
+## 📦 Prerequisites
 
-Highly configurable statusbar for Hyprland
+- **GNU Stow** is required for symlink management
+- **packages.txt** contains all other required software packages for this setup
+    - Install them with your system package manager before running the script
 
-## [Swaync](https://github.com/ErikReider/SwayNotificationCenter)
+---
 
-A simple notification daemon with a GTK gui for notifications and the control center
+## 🚀 Installation
 
-## [Wofi](https://hg.sr.ht/~scoopta/wofi)
-
-Highly configurable application launcher
-
-# Installation instruciton
+Clone the repo and run the installer:
 
 ```bash
+git clone https://github.com/saminjay/.dotfiles.git ~/.dotfiles
+cd ~/.dotfiles
 ./install.sh
 ```
 
-# Acknowledgements
+This will symlink the configs into your `$HOME` directory using Stow.
 
-- ThePrimeagen [config](https://github.com/ThePrimeagen/init.lua) [video](https://youtu.be/w7i4amO_zaE?si=d2d7WdR7mMQLEBfN)
-- Dreams of Code [config](https://github.com/dreamsofcode-io/dotfiles) [video](https://youtu.be/DzNmUNvnB04?si=dmjmJUhEmUyrRM2g)
-- NVIM kickstart [config](https://github.com/nvim-lua/kickstart.nvim) [video](https://youtu.be/m8C0Cq9Uv9o?si=fzcdA9iQVWZahCT2)
-- Wofi Tutorial [link](https://mephisto.cc/en/tech/wofi/)
+---
+
+## 📂 Structure
+
+```
+.dotfiles/
+├── dot-config/       # Application configs (alacritty, neovim, zsh, etc.)
+├── dot-local/        # Machine-specific overrides (ignored in git)
+├── dot-personal/     # Personal scripts / extras
+├── dot-wallpapers/   # Wallpapers for Hyprland setups
+├── install.sh        # Bootstrap + stow installer
+└── packages.txt      # Package list to install via package manager
+```
+
+---
+
+## 🛠 Usage & Tips
+
+* Update configs with:
+
+    ```bash
+    cd ~/.dotfiles && git pull && ./install.sh
+    ```
+* To exclude a config, just skip stowing that folder.
+* Add personal, machine-specific overrides in `dot-local/`.
+* Wallpapers and extra scripts live under their own folders — optional to use.
+
+---
+
+## 🙏 Acknowledgements
+
+Inspired by and borrowing ideas from:
+
+* [ThePrimeagen](https://github.com/ThePrimeagen)
+    * [video](https://youtu.be/w7i4amO_zaE?si=d2d7WdR7mMQLEBfN)
+* [Dreams of Code](https://www.youtube.com/@DreamsofCode)
+    * [video](https://youtu.be/DzNmUNvnB04?si=dmjmJUhEmUyrRM2g)
+* [NVIM Kickstart](https://github.com/nvim-lua/kickstart.nvim)
+    * [video](https://youtu.be/m8C0Cq9Uv9o?si=fzcdA9iQVWZahCT2)
+* [Wofi Tutorial](https://mephisto.cc/en/tech/wofi)
+
+---
+
+## 📜 License
+
+[MIT License](./LICENSE)
+Do whatever you want with these configs — adapt, copy, share.
+
+---
+
+## 💬 Feedback
+
+These dotfiles are opinionated to my workflow, but I’d love to hear:
+
+* Suggestions to make scripts more generic or optimized
+* Requests for extra features or modularity
+* Criticism that helps me improve the setup

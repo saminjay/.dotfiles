@@ -1,5 +1,6 @@
 /* Macchiato Rosewater */
-@define-color accent #f4dbd6;
+@define-color accent #3C404C;
+@define-color input-txt #f4dbd6;
 @define-color txt #cad3f5;
 @define-color win-bg #24273a;
 @define-color input-bg #494d64;
@@ -52,7 +53,7 @@
     margin: 16px 16px 8px 16px;
     padding: 10px;
     border: none;
-    color: @accent;
+    color: @input-txt;
     background-color: @input-bg;
     animation: fadeIn 0.5s ease-in-out both;
 }
