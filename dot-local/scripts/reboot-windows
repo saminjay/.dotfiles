@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+grub-reboot "$(grep -i windows /boot/grub/grub.cfg|cut -d"'" -f2)"
+grub-mkconfig -o /boot/grub/grub.cfg
+reboot

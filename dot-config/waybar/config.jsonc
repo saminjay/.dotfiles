@@ -145,7 +145,8 @@
             "shutdown": "shutdown now",
             "reboot": "reboot",
             "suspend": "systemctl suspend",
-            "lock": "hyprlock"
+            "lock": "hyprlock",
+            "reboot-windows": "sudo /home/neo/.local/scripts/reboot-windows"
         }
     },
     "tray": {

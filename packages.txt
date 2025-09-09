@@ -17,6 +17,7 @@ hyprland
 hyprlock
 hyprpaper
 hyprpicker
+inetutils
 inotify-tools
 kmonad
 lazygit

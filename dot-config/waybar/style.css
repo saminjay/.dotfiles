@@ -181,7 +181,10 @@ window#waybar.hidden {
 }
 
 menu {
+    padding: 0px;
     background: @tokyonight-bg;
+    border-radius: 16px;
+    border: 1px solid @tokyonight-border;
 }
 
 menuitem {
