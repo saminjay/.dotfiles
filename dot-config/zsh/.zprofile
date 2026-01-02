@@ -12,6 +12,9 @@ setopt HIST_IGNORE_DUPS
 setopt HIST_IGNORE_SPACE
 
 ################################################################################
-#               Forcing XDG_BASE_DIRS                                          #
+#                   AUTOLOADS                                                  #
 ################################################################################
-alias dosbox="dosbox -conf "$XDG_CONFIG_HOME"/dosbox/dosbox.conf"
+
+autoload -U edit-command-line
+zle -N edit-command-line
+bindkey "\C-x\C-e" edit-command-line

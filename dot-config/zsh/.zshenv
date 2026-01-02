@@ -6,8 +6,11 @@ export XDG_STATE_HOME="$HOME/.local/state"
 export GBM_BACKEND=nvidia-drm
 export __GLX_VENDOR_LIBRARY_NAME=nvidia
 
+export SDL_VIDEO_DRIVER=wayland
+
 export TERMINAL=alacritty
 export EDITOR=nvim
+export VISUAL=nvim
 export GIT_EDITOR="$EDITOR"
 
 export GOPATH="$XDG_DATA_HOME/go"
@@ -46,3 +49,4 @@ export PYTHON_HISTORY="$XDG_STATE_HOME/python/history"
 export PYTHONPYCACHEPREFIX="$XDG_CACHE_HOME/python"
 export PYTHONUSERBASE="$XDG_DATA_HOME/python"
 # export XCURSOR_PATH="${XCURSOR_PATH}:~/.local/share/icons"
+source "$HOME/.cargo/env"
