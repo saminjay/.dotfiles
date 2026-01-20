@@ -17,6 +17,7 @@ hyprland
 hyprlock
 hyprpaper
 hyprpicker
+hyprpwcenter
 inetutils
 inotify-tools
 kmonad
@@ -31,14 +32,18 @@ nvtop
 nwg-look
 otf-codenewroman-nerd
 otf-firamono-nerd
+prettier
 qt5ct
 qt6ct
 ripgrep
+shellcheck
+shfmt
 slurp
 spotify-launcher
 starship
 stow
 strace
+stylua
 swaync
 tmux
 tree-sitter-cli
