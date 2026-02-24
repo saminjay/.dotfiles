@@ -17,3 +17,9 @@ vim.lsp.enable({
     "taplo",
     "ts_ls",
 })
+
+vim.diagnostic.config({
+    -- virtual_lines = true,
+    virtual_text = true,
+
+})

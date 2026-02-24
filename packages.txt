@@ -16,6 +16,7 @@ hypridle
 hyprland
 hyprlock
 hyprpaper
+hyprpolkitagent
 hyprpicker
 hyprpwcenter
 inetutils
@@ -32,6 +33,7 @@ nvtop
 nwg-look
 otf-codenewroman-nerd
 otf-firamono-nerd
+pipewire-pulse
 prettier
 qt5ct
 qt6ct
