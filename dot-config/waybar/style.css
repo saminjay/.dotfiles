@@ -95,6 +95,10 @@ window#waybar.hidden {
     padding-right: 12px;
 }
 
+#idle_inhibitor {
+    padding-left: 16px;
+}
+
 .modules-right {
     border-radius: 20px;
     transition: none;
@@ -116,7 +120,7 @@ window#waybar.hidden {
     color: @tokyonight-bg ;
 }
 
-#custom-mem {
+#memory {
     padding-left: 16px;
     padding-right: 16px;
     border-radius: 20px;

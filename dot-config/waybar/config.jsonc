@@ -9,17 +9,31 @@
     ],
     "modules-center": [
         "custom/notif",
-        "clock"
+        "clock",
+        "idle_inhibitor"
     ],
     "modules-right": [
         "wireplumber",
         "network",
-        "custom/mem",
+        "memory",
         "cpu",
         // "temperature",
         "backlight",
         "battery"
     ],
+    "memory": {
+        "interval": 5,
+        "format": "{used:0.1f}G ",
+        "tooltip": false
+    },
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": " ",
+            "deactivated": " "
+        },
+        "tooltip": false
+    },
     //***************************
     //*  Modules configuration  *
     //***************************
@@ -86,12 +100,6 @@
         "tooltip-format-ethernet": "{ifname} 󰲝 ",
         "tooltip-format-disconnected": "Disconnected",
         "max-length": 50
-    },
-    "custom/mem": {
-        "format": "{} ",
-        "interval": 3,
-        "exec": "free -h | awk '/Mem:/{printf $3}'",
-        "tooltip": false
     },
     "cpu": {
         "interval": 2,
