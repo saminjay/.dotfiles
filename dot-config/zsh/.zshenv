@@ -3,9 +3,6 @@ export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_STATE_HOME="$HOME/.local/state"
 
-export GBM_BACKEND=nvidia-drm
-export __GLX_VENDOR_LIBRARY_NAME=nvidia
-
 export SDL_VIDEO_DRIVER=wayland
 
 export TERMINAL=alacritty
@@ -31,7 +28,7 @@ export PATH
 export HISTFILE="$XDG_CACHE_HOME/zsh/.zhistory"
 export HISTSIZE=5000
 export SAVEHIST=5000
-export HISTORY_IGNORE="(ls|cd|pwd|exit|cd ..|lsa|lsl|htop|btop|td)"
+export HISTORY_IGNORE="(ls|cd|pwd|exit|cd ..|lsa|lsl|htop|btop|td|clear)"
 
 # fzf shell integration options
 export FZF_DEFAULT_OPTS='--tmux center'
