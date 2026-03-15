@@ -9,6 +9,7 @@ alias lsl="ls -lAh"
 alias grep="grep --color=auto"
 alias td="v ~/.personal/TODO.md"
 alias k="sudo -b kmonad ~/.config/kmonad/config.kbd"
+alias focus="sudo ~/.local/scripts/toggle-site-blocking"
 
 # frequent dirs
 alias personal="cd ~/.personal"

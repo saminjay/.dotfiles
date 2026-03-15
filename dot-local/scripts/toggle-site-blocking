@@ -1,0 +1,46 @@
+#!/usr/bin/env bash
+
+if [[ $EUID -ne 0 ]]; then
+    echo "Please run with sudo"
+    exit 1
+fi
+
+HOSTS="/etc/hosts"
+START="# ---- PRODUCTIVITY_BLOCK_START"
+END="# ---- PRODUCTIVITY_BLOCK_END"
+
+BLOCKS=$(cat <<EOF
+127.0.0.1 youtube.com
+127.0.0.1 www.youtube.com
+127.0.0.1 m.youtube.com
+
+127.0.0.1 netflix.com
+127.0.0.1 www.netflix.com
+
+127.0.0.1 primevideo.com
+127.0.0.1 www.primevideo.com
+
+127.0.0.1 www.reddit.com
+127.0.0.1 old.reddit.com
+127.0.0.1 reddit.com
+
+127.0.0.1 www.steamcommunity.com
+127.0.0.1 steamcommunity.com
+127.0.0.1 steampowered.com
+127.0.0.1 store.steampowered.com
+EOF
+)
+
+if grep -q "$START" "$HOSTS"; then
+    echo "Wait 5 minutes"
+    sleep 5m
+    echo "Unblocking sites..."
+    sed -i "/$START/,/$END/d" "$HOSTS"
+else
+    echo "Blocking sites..."
+    tee -a "$HOSTS" <<EOF
+$START
+$BLOCKS
+$END
+EOF
+fi
