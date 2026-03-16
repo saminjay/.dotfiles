@@ -24,6 +24,12 @@ BLOCKS=$(cat <<EOF
 127.0.0.1 old.reddit.com
 127.0.0.1 reddit.com
 
+127.0.0.1 twitch.tv
+127.0.0.1 www.twitch.tv
+
+127.0.0.1 linkedin.com
+127.0.0.1 www.linkedin.com
+
 127.0.0.1 www.steamcommunity.com
 127.0.0.1 steamcommunity.com
 127.0.0.1 steampowered.com
