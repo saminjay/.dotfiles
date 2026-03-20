@@ -14,11 +14,4 @@ compinit
 source <(fzf --zsh)
 source <(volta completions zsh)
 
-# print new line before every prompt except the first one
-precmd() {
-    precmd() {
-        echo
-    }
-}
-
 eval "$(starship init zsh)"
