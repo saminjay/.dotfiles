@@ -1,0 +1,83 @@
+#!/usr/bin/env bash
+
+function donezo() {
+    echo "$empty_state" >"$state_file"
+    notify-send "$mode session complete"
+    echo "{\"text\": \"✔ done\"}"
+}
+
+function check_error() {
+    if ! read -r duration mode <"$state_file" ||
+        [[ "$duration" -lt 0 ]]; then
+        echo "{\"text\": \" error\"}"
+        return 0
+    fi
+    return 1
+}
+
+function check_mode() {
+    if [[ "$mode" != "WORK" && "$mode" != "BREAK" ]] ||
+        [[ "$duration" -eq 0 ]]; then
+        echo "{\"text\": \"⚡ idle\"}"
+        return 0
+    fi
+    return 1
+}
+
+function progress_bar() {
+    local pct filled empty bar space icon
+
+    pct=$((elapsed * 100 / duration))
+    ((pct > 100)) && pct=100
+    filled=$((pct / 10))
+    empty=$((10 - filled))
+
+    bar=$(printf '%*s' "$filled" '')
+    bar=${bar// /█}
+
+    space=$(printf '%*s' "$empty" '')
+    space=${space// /░}
+
+    if [ "$mode" = "WORK" ]; then
+        icon="⚡"
+    else
+        icon="☕"
+    fi
+
+    echo "{\"text\": \"${icon} ${bar}${space}\", \"percentage\": \"${pct}\"}"
+}
+
+function main() {
+    local now elapsed start_time duration mode
+
+    local state_file="$XDG_RUNTIME_DIR/focus_timer"
+    local empty_state="0 IDLE"
+    echo "$empty_state" >"$state_file"
+
+    while true; do
+        if check_error || check_mode; then
+            sleep 0.5s
+            continue
+        fi
+
+        start_time=$(date +%s)
+        while true; do
+            if check_error || check_mode; then
+                break
+            fi
+
+            now=$(date +%s)
+            elapsed=$((now - start_time))
+
+            if [ "$elapsed" -ge "$duration" ]; then
+                donezo
+                break
+            fi
+
+            progress_bar
+            sleep "$((duration / 10))"
+        done
+    done
+}
+
+main

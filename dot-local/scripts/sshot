@@ -7,7 +7,7 @@ function main() {
     mkdir -p "$directory"
     filename="SS-$(date +%H%M%S).png"
     grim -g "$(slurp)" "$directory/$filename" || exit 1
-    notify-send "Screenshot captured at $filename"
+    notify-send "Screenshot Captured" "$filename"
 }
 
 main

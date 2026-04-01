@@ -15,18 +15,21 @@ precmd() {
 
         if [[ -n "$CMD_START_TIME" ]]; then
             local duration=$(($(date +%s) - CMD_START_TIME))
-            unset CMD_START_TIME
 
             if [[ $duration -ge 5 ]]; then
                 if [[ $exit_code -eq 0 ]]; then
-                    notify-send "Done ✅" "${CMD} \nTook ${duration}s"
+                    title="Done ✅"
+                    body="${CMD} \nTook ${duration}s"
                 else
-                    notify-send "Failed ❌" "${CMD} \nExit $exit_code"
+                    title="Failed ❌"
+                    body="${CMD} \nTook ${duration}s \nExit $exit_code"
                 fi
+                setsid notify-send "$title" "$body"
             fi
         fi
 
         unset CMD
+        unset CMD_START_TIME
 
         # new line
         echo

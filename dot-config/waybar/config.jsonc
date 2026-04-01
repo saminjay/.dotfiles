@@ -5,7 +5,8 @@
     "modules-left": [
         "custom/launcher",
         "hyprland/workspaces",
-        "tray"
+        "tray",
+        "custom/focus"
     ],
     "modules-center": [
         "custom/notif",
@@ -38,7 +39,8 @@
     //*  Modules configuration  *
     //***************************
     "custom/launcher": {
-        "format": "󰣇"
+        "format": "󰣇",
+        "tooltip": false
         // "on-click": "wofi",
     },
     "hyprland/workspaces": {
@@ -160,5 +162,10 @@
     "tray": {
         "icon-size": 16,
         "spacing": 16
+    },
+    "custom/focus": {
+        "exec": "~/.local/scripts/focus-waybar",
+        "return-type": "json"
+
     }
 }

@@ -80,6 +80,16 @@ window#waybar.hidden {
     border: 1px solid @tokyonight-border;
 }
 
+#custom-focus {
+    margin-left: 8px;
+    border-radius: 20px;
+    padding-left: 16px;
+    padding-right: 16px;
+    background: @tokyonight-bg;
+    border: 1px solid @tokyonight-border;
+    color: @tokyonight-text;
+}
+
 .modules-center {
     padding-left: 16px;
     padding-right: 16px;
