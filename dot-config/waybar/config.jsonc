@@ -152,11 +152,11 @@
         "menu": "on-click",
         "menu-file": "~/.config/waybar/menu/power.xml",
         "menu-actions": {
-            "shutdown": "hyprshutdown -t 'Shutting down...' --post-cmd 'shutdown now'",
-            "reboot": "hyprshutdown -t 'Rebooting...' --post-cmd 'reboot'",
+            "shutdown": "hyprshutdown -t 'Shutting down...' --post-cmd 'shutdown now' || shutdown now",
+            "reboot": "hyprshutdown -t 'Rebooting...' --post-cmd 'reboot' || reboot",
             "suspend": "systemctl suspend",
             "lock": "hyprlock",
-            "reboot-windows": "hyprshutdown -t 'Rebooting to Windows...' --post-cmd 'sudo /home/neo/.local/scripts/reboot-windows'"
+            "reboot-windows": "hyprshutdown -t 'Rebooting to Windows...' --post-cmd 'sudo /home/neo/.local/scripts/reboot-windows' || sudo /home/neo/.local/scripts/reboot-windows"
         }
     },
     "tray": {

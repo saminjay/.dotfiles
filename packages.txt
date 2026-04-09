@@ -2,6 +2,7 @@ alacritty
 brightnessctl
 btop
 cliphist
+fd
 firefox
 fzf
 git

@@ -10,6 +10,9 @@ START="# ---- PRODUCTIVITY_BLOCK_START"
 END="# ---- PRODUCTIVITY_BLOCK_END"
 
 BLOCKS=$(cat <<EOF
+127.0.0.1 amazon.in
+127.0.0.1 www.amazon.in
+
 127.0.0.1 youtube.com
 127.0.0.1 www.youtube.com
 127.0.0.1 m.youtube.com
