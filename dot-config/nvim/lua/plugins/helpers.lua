@@ -1,17 +1,18 @@
+vim.keymap.set("n", "<leader>pt", ":TodoTelescope<CR>", { desc = "[p]roject [t]odos" })
+
 return {
     {
         "folke/todo-comments.nvim",
         event = "BufRead",
-        opts = {
-            signs = false,
-        },
+        cmd = "TodoTelescope",
+        opts = { signs = false },
     },
     {
         "brenoprata10/nvim-highlight-colors",
         cmd = "HighlightColors",
         opts = {
             render = "virtual",
-            virtual_symbol = '■',
+            virtual_symbol = "■",
             virtual_symbol_prefix = " ",
             virtual_symbol_suffix = "",
             virtual_symbol_position = "inline",
@@ -23,18 +24,20 @@ return {
             enable_named_colors = true,
             enable_tailwind = true,
             exclude_filetypes = {},
-            exclude_buftypes = {}
+            exclude_buftypes = {},
         },
     },
     -- INFO: removed after getting comfortable
-    -- {
-    --     "m4xshen/hardtime.nvim",
-    --     event = "VeryLazy",
-    --     opts = {}
-    -- },
+    --[[
+    {
+        "m4xshen/hardtime.nvim",
+        event = "VeryLazy",
+        opts = {}
+    },
+    ]]
     -- INFO: Dependencies
     {
         "MunifTanjim/nui.nvim",
         lazy = true,
     },
-};
+}

@@ -24,6 +24,7 @@ vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 
 vim.opt.smartindent = true
+vim.opt.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
 
 vim.opt.wrap = false
 vim.opt.sidescroll = 1

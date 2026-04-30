@@ -12,12 +12,12 @@ return {
                 },
                 completion = { completeopt = "menu,menuone,noinsert,noselect" },
                 mapping = {
-                    ['<C-b>'] = cmp.mapping.scroll_docs(-4),
-                    ['<C-f>'] = cmp.mapping.scroll_docs(4),
+                    ["<C-b>"] = cmp.mapping.scroll_docs(-4),
+                    ["<C-f>"] = cmp.mapping.scroll_docs(4),
                     ["<C-p>"] = cmp.mapping.select_prev_item(),
                     ["<C-n>"] = cmp.mapping.select_next_item(),
                     ["<Tab>"] = cmp.mapping.confirm({ select = true }),
-                    ['<C-e>'] = cmp.mapping.abort(),
+                    ["<C-e>"] = cmp.mapping.abort(),
                     ["<C-y>"] = cmp.mapping.complete(),
                 },
                 sources = cmp.config.sources({
@@ -27,12 +27,17 @@ return {
                     },
                     { name = "nvim_lsp" },
                     { name = "path" },
-                    { name = 'nvim_lsp_signature_help' },
+                    { name = "nvim_lsp_signature_help" },
                 }, {
                     { name = "buffer" },
-                })
+                }),
             })
         end,
+    },
+    {
+        -- Allows extra capabilities provided by nvim-cmp
+        "hrsh7th/cmp-nvim-lsp",
+        lazy = true,
     },
     -- INFO: Dependencies
     {
@@ -63,7 +68,7 @@ return {
         },
     },
     {
-        'Bilal2453/luvit-meta',
+        "Bilal2453/luvit-meta",
         lazy = true,
     },
 }

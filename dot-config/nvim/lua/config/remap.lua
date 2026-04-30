@@ -74,3 +74,6 @@ vim.keymap.set("x", "K", ":<C-U>lua moveLineUp()<CR>")
 vim.keymap.set("n", "<leader>wp", function()
     vim.o.wrap = not vim.o.wrap
 end)
+
+-- packages remaps
+-- vim.keymap.set("n", "<leader>u", ":Undotree<CR>", "[u]ndotree")
