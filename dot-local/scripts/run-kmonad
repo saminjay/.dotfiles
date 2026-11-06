@@ -10,7 +10,7 @@ fi
 export KBD_DEV
 config=$(envsubst < /home/neo/.config/kmonad/config.kbd)
 
-sudo echo "$config" > /tmp/kmonad-config.kbd
+echo "$config" > /tmp/kmonad-config.kbd
 
-cat /tmp/kmonad-config.kbd
-sudo kmonad <(echo "$config")
+sudo /usr/bin/kmonad /tmp/kmonad-config.kbd >/dev/null 2>&1 &
+disown

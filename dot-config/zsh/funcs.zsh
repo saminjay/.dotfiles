@@ -75,3 +75,13 @@ function fanctl() {
         echo "2 arguments required for fan 1 and 2";
     fi
 }
+
+function bat-cap() {
+    if [[ "$1" -gt ($2 - 5) ]]; then
+        echo "INVALID: gap must be at least 5"
+        return
+    fi
+    echo "$1" | sudo tee /sys/devices/virtual/firmware-attributes/dell-wmi-sysman/attributes/CustomChargeStart/current_value
+    echo "$2" | sudo tee /sys/devices/virtual/firmware-attributes/dell-wmi-sysman/attributes/CustomChargeStop/current_value
+}
+

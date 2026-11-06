@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
-
-grub-reboot "$(grep -i windows /boot/grub/grub.cfg|cut -d"'" -f2)"
-grub-mkconfig -o /boot/grub/grub.cfg
-reboot
+#
+# grub-reboot "$(grep -i windows /boot/grub/grub.cfg|cut -d"'" -f2)"
+# grub-mkconfig -o /boot/grub/grub.cfg
+# reboot
+#
+efibootmgr --bootnext $(efibootmgr | grep -i "Windows Boot Manager" | grep -oP "Boot\K[0-9A-F]{4}") && reboot
